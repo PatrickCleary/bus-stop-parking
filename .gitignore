@@ -1,0 +1,6 @@
+labeler/node_modules/
+labeler/.next/
+analysis/outputs/
+.DS_Store
+analysis/data_inputs/
+.env.local
