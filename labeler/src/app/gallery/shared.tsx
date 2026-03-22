@@ -101,7 +101,7 @@ export function GalleryFilters({
   counts: Record<string, number>;
 }) {
   return (
-    <div className="bg-[#0a0a0a] border-b border-gray-800 px-4 py-2 flex gap-2">
+    <div className="bg-[#0a0a0a] border-b border-gray-800 px-4 py-2 flex flex-wrap gap-2">
       {(
         [
           ["all", "All", "bg-gray-600"],

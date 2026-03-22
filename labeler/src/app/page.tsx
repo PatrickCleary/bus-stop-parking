@@ -556,30 +556,42 @@ export default function MapPage() {
 
     if (popupRef.current) popupRef.current.remove();
     const statusColor = `rgb(${(STATUS_COLORS[d.status] || [128, 128, 128]).join(",")})`;
-    const notesHtml = d.notes ? `<div style="font-size:11px;color:#6b7280;font-style:italic;margin-top:4px">${d.notes}</div>` : "";
+    const notesHtml = "";
     const dateHtml = d.image_date ? ` &middot; ${formatImageDate(d.image_date)}` : "";
+    const isSmall = window.innerWidth < 640;
+    const imgW = isSmall ? 240 : 400;
+    const imgH = isSmall ? 150 : 250;
+    const maxW = isSmall ? "260px" : "420px";
+    const btnSize = isSmall ? "22px" : "28px";
+    const btnIconSize = isSmall ? "12" : "16";
+    const pad = isSmall ? "6px" : "8px";
+    const nameSize = isSmall ? "11px" : "13px";
+    const metaSize = isSmall ? "9px" : "11px";
+    const badgeSize = isSmall ? "8px" : "10px";
+    const badgePad = isSmall ? "1px 4px" : "2px 6px";
+
     popupRef.current = new maplibregl.Popup({
       closeButton: false,
       closeOnClick: true,
-      maxWidth: "420px",
+      maxWidth: maxW,
       offset: 12,
     })
       .setLngLat([d.lng, d.lat])
       .setHTML(`
         <div style="background:rgba(17,24,39,0.95);border-radius:6px;overflow:hidden;border:1px solid #374151;position:relative">
-          <button onclick="document.dispatchEvent(new CustomEvent('copy-stop-link',{detail:${d.stop_id}}))" style="position:absolute;top:8px;left:8px;z-index:1;width:28px;height:28px;border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <button onclick="document.dispatchEvent(new CustomEvent('copy-stop-link',{detail:${d.stop_id}}))" style="position:absolute;top:${pad};left:${pad};z-index:1;width:${btnSize};height:${btnSize};border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="${btnIconSize}" height="${btnIconSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </button>
-          <button onclick="document.dispatchEvent(new CustomEvent('close-popup'))" style="position:absolute;top:8px;right:8px;z-index:1;width:28px;height:28px;border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <button onclick="document.dispatchEvent(new CustomEvent('close-popup'))" style="position:absolute;top:${pad};right:${pad};z-index:1;width:${btnSize};height:${btnSize};border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="${btnIconSize}" height="${btnIconSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
-          <img src="${toStaticUrl(d)}" style="width:400px;height:250px;object-fit:cover;display:block" />
-          <div style="padding:8px">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-              <span style="font-size:13px;font-weight:500;color:white">${d.stop_name}</span>
-              <span style="background:${statusColor};color:white;font-size:10px;font-family:ui-monospace,monospace;font-weight:500;text-transform:uppercase;padding:2px 6px;border-radius:4px;white-space:nowrap">${LABEL_DISPLAY[d.status] || d.status.replace(/_/g, " ")}</span>
+          <img src="${toStaticUrl(d)}" style="width:${imgW}px;height:${imgH}px;object-fit:cover;display:block" />
+          <div style="padding:${pad}">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:${isSmall ? '4px' : '8px'}">
+              <span style="font-size:${nameSize};font-weight:500;color:white">${d.stop_name}</span>
+              <span style="background:${statusColor};color:white;font-size:${badgeSize};font-family:ui-monospace,monospace;font-weight:500;text-transform:uppercase;padding:${badgePad};border-radius:4px;white-space:nowrap">${LABEL_DISPLAY[d.status] || d.status.replace(/_/g, " ")}</span>
             </div>
-            <div style="font-size:11px;color:#9ca3af;display:flex;align-items:center;gap:4px">
+            <div style="font-size:${metaSize};color:#9ca3af;display:flex;align-items:center;gap:4px">
               <span>${d.route_ids.join(", ")}${dateHtml}</span>
               <a href="https://www.google.com/maps/@?api=1&map_action=pano${d.pano_id ? `&pano=${d.pano_id}` : `&viewpoint=${d.view_lat ?? d.lat},${d.view_lng ?? d.lng}`}&heading=${d.view_heading ?? 0}&pitch=${d.view_pitch ?? 0}&fov=${d.view_fov ?? 90}" target="_blank" rel="noopener noreferrer" style="margin-left:auto;color:#6b7280;display:flex;align-items:center;gap:3px;white-space:nowrap;text-decoration:none" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6b7280'">
                 <span>Open in Google Maps</span>
