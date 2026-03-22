@@ -4,3 +4,4 @@ analysis/outputs/
 .DS_Store
 analysis/data_inputs/
 .env.local
+.gitignore
