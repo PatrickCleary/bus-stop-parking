@@ -270,15 +270,15 @@ function StatusBar({
 
       {/* Filter buttons */}
       <div className="flex gap-1 mt-2">
-        {([["all", "All"], ["blocked", "Blocked"], ["not_blocked", "Clear"]] as const).map(
-          ([mode, label]) => (
+        {([["all", "All", "bg-gray-600"], ["blocked", "Blocked", "bg-red-600"], ["not_blocked", "Clear", "bg-green-600"]] as const).map(
+          ([mode, label, activeBg]) => (
             <button
               key={mode}
               onClick={() => onFilterModeChange(mode)}
-              className={`text-xs px-2 py-1 rounded cursor-pointer transition-colors ${
+              className={`px-3 py-1 rounded text-xs font-mono font-medium uppercase cursor-pointer transition-colors ${
                 filterMode === mode
-                  ? "bg-white/15 text-white"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? `${activeBg} text-white`
+                  : "bg-gray-800 text-gray-400 hover:text-white"
               }`}
             >
               {label}

@@ -5,3 +5,4 @@ analysis/outputs/
 analysis/data_inputs/
 .env.local
 .gitignore
+analysis/map.qgz
