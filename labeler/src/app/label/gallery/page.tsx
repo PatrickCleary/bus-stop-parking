@@ -1,8 +1,9 @@
 "use client";
 
+import { Suspense } from "react";
 import { useLabels, GalleryFilters, GalleryCard } from "../../gallery/shared";
 
-export default function LabelGallery() {
+function LabelGalleryContent() {
   const { labels, filtered, filter, setFilter, counts } = useLabels();
 
   return (
@@ -25,5 +26,13 @@ export default function LabelGallery() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function LabelGallery() {
+  return (
+    <Suspense>
+      <LabelGalleryContent />
+    </Suspense>
   );
 }
