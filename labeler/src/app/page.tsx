@@ -16,8 +16,9 @@ const STATUS_COLORS: Record<string, [number, number, number]> = {
   not_blocked: [22, 163, 74], // green
   construction: [234, 88, 12], // orange
   uncertain: [147, 51, 234], // purple
-  no_stop: [75, 85, 99], // gray
+  no_stop: [156, 163, 175], // bright gray
   bad_image: [202, 138, 4], // yellow
+  no_data: [6, 182, 212], // cyan
 };
 
 const ROUTE_COLOR = "#3b82f6";
@@ -120,7 +121,7 @@ function SidebarGallery({
 }: {
   data: LabelFeature[];
   selectedRoute: string | null;
-  filterMode: "all" | "blocked" | "not_blocked";
+  filterMode: "all" | "blocked" | "not_blocked" | "other";
   onSelectStop: (d: LabelFeature) => void;
   selectedStopId: number | null;
 }) {
@@ -286,10 +287,10 @@ function StatusBar({
   data: LabelFeature[];
   allStops: { stop_id: number; route_ids: string[] }[];
   selectedRoute: string | null;
-  filterMode: "all" | "blocked" | "not_blocked";
+  filterMode: "all" | "blocked" | "not_blocked" | "other";
   routeIds: string[];
   onRouteChange: (id: string | null) => void;
-  onFilterModeChange: (mode: "all" | "blocked" | "not_blocked") => void;
+  onFilterModeChange: (mode: "all" | "blocked" | "not_blocked" | "other") => void;
 }) {
   const routeStops = selectedRoute
     ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
@@ -341,6 +342,7 @@ function StatusBar({
           [
             ["all", "All", "bg-gray-600"],
             ["blocked", "Blocked", "bg-red-600"],
+            ["other", "Other", "bg-purple-600"],
           ] as const
         ).map(([mode, label, activeBg]) => (
           <button
@@ -375,7 +377,7 @@ export default function MapPage() {
     { stop_id: number; route_ids: string[] }[]
   >([]);
   const [filterMode, setFilterMode] = useState<
-    "all" | "blocked" | "not_blocked"
+    "all" | "blocked" | "not_blocked" | "other"
   >("all");
   const [routeIds, setRouteIds] = useState<string[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null);
@@ -435,7 +437,7 @@ export default function MapPage() {
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: "/alidade_no_labels.json",
+      style: "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json",
       center: [-73.95, 40.78],
       zoom: 12,
     });
@@ -560,6 +562,8 @@ export default function MapPage() {
       filtered = filtered.filter((d) => d.status === "blocked");
     } else if (filterMode === "not_blocked") {
       filtered = filtered.filter((d) => d.status === "not_blocked");
+    } else if (filterMode === "other") {
+      filtered = filtered.filter((d) => d.status !== "blocked" && d.status !== "not_blocked");
     }
     const layer = new ScatterplotLayer<LabelFeature>({
       id: "labels",

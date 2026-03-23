@@ -1,9 +1,10 @@
 "use client";
 
+import { Suspense } from "react";
 import { useLabels, GalleryFilters, GalleryCard } from "./shared";
 import { NavBar } from "../components/NavBar";
 
-export default function Gallery() {
+function GalleryContent() {
   const { labels, filtered, filter, setFilter, counts } = useLabels();
 
   return (
@@ -19,5 +20,13 @@ export default function Gallery() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function Gallery() {
+  return (
+    <Suspense>
+      <GalleryContent />
+    </Suspense>
   );
 }

@@ -17,7 +17,8 @@ type StatusLabels =
   | "bad_image"
   | "construction"
   | "uncertain"
-  | "no_stop";
+  | "no_stop"
+  | "no_data";
 
 interface PovState {
   pano: string;
@@ -404,6 +405,12 @@ export default function Home() {
             className="flex-1 bg-yellow-600 hover:bg-yellow-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
           >
             Bad Image
+          </button>
+          <button
+            onClick={() => handleLabel("no_data")}
+            className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
+          >
+            No Data
           </button>
         </div>
       </div>

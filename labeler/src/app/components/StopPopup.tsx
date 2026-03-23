@@ -15,6 +15,7 @@ const STATUS_COLORS: Record<string, [number, number, number]> = {
   uncertain: [147, 51, 234],
   no_stop: [75, 85, 99],
   bad_image: [202, 138, 4],
+  no_data: [6, 182, 212],
 };
 
 const LABEL_DISPLAY: Record<string, string> = {
@@ -24,6 +25,7 @@ const LABEL_DISPLAY: Record<string, string> = {
   uncertain: "uncertain",
   no_stop: "no stop",
   bad_image: "bad image",
+  no_data: "no data",
 };
 
 export interface StopFeature {

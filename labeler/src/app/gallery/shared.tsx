@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
 const SHORT_MONTHS = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
@@ -16,7 +17,7 @@ export interface Label {
   stop_id: number;
   stop_name: string;
   route_ids: string[];
-  label: "blocked" | "not_blocked" | "bad_image" | "construction" | "uncertain" | "no_stop";
+  label: "blocked" | "not_blocked" | "bad_image" | "construction" | "uncertain" | "no_stop" | "no_data";
   notes: string;
   labeled_at: string;
   snapped_lat: number;
@@ -42,6 +43,7 @@ export const LABEL_CONFIG = {
   uncertain: { text: "Uncertain", bg: "bg-purple-600", order: 3 },
   no_stop: { text: "No Stop", bg: "bg-gray-600", order: 4 },
   bad_image: { text: "Bad Image", bg: "bg-yellow-600", order: 5 },
+  no_data: { text: "No Data", bg: "bg-cyan-600", order: 6 },
 } as const;
 
 export function toStaticUrl(l: Label): string {
@@ -59,9 +61,20 @@ export function toStaticUrl(l: Label): string {
   return `${base}&location=${lat},${lng}`;
 }
 
+const VALID_FILTERS = new Set(["all", "blocked", "not_blocked", "construction", "uncertain", "no_stop", "bad_image", "no_data"]);
+
 export function useLabels() {
   const [labels, setLabels] = useState<Label[]>([]);
-  const [filter, setFilter] = useState<string>("blocked");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const statusParam = searchParams.get("status");
+  const filter = statusParam && VALID_FILTERS.has(statusParam) ? statusParam : "blocked";
+
+  const setFilter = (f: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("status", f);
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
 
   useEffect(() => {
     fetch("/api/labels")
@@ -86,10 +99,12 @@ export function useLabels() {
     uncertain: labels.filter((l) => l.label === "uncertain").length,
     no_stop: labels.filter((l) => l.label === "no_stop").length,
     bad_image: labels.filter((l) => l.label === "bad_image").length,
+    no_data: labels.filter((l) => l.label === "no_data").length,
   };
 
   return { labels, filtered, filter, setFilter, counts };
 }
+
 
 export function GalleryFilters({
   filter,
@@ -111,6 +126,7 @@ export function GalleryFilters({
           ["uncertain", "Uncertain", "bg-purple-600"],
           ["no_stop", "No Stop", "bg-gray-600"],
           ["bad_image", "Bad Image", "bg-yellow-600"],
+          ["no_data", "No Data", "bg-cyan-600"],
         ] as const
       ).map(([key, text, activeBg]) => (
         <button
