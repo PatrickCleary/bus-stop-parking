@@ -68,7 +68,7 @@ export function InfoButton() {
               onClick={() => setOpen(false)}
               className="text-sm  hover:bg-gray-300 border border-gray-600 py-4  transition-colors cursor-pointer w-full hover:text-black "
             >
-              Explore the map
+              Continue
             </button>
           </div>
         </div>

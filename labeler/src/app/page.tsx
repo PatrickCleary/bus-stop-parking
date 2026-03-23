@@ -503,22 +503,7 @@ export default function MapPage() {
     const ro = new ResizeObserver(() => map.resize());
     ro.observe(mapContainer.current);
 
-    const handleClosePopup = () => {
-      if (popupRef.current) popupRef.current.remove();
-    };
-    const handleCopyLink = (e: Event) => {
-      const stopId = (e as CustomEvent).detail;
-      const url = `${window.location.origin}/?stop=${stopId}`;
-      navigator.clipboard.writeText(url);
-      setToast(true);
-      setTimeout(() => setToast(false), 2000);
-    };
-    document.addEventListener("close-popup", handleClosePopup);
-    document.addEventListener("copy-stop-link", handleCopyLink);
-
     return () => {
-      document.removeEventListener("close-popup", handleClosePopup);
-      document.removeEventListener("copy-stop-link", handleCopyLink);
       ro.disconnect();
       map.remove();
       mapRef.current = null;
@@ -653,7 +638,7 @@ export default function MapPage() {
     const isSmall = window.innerWidth < 640;
     const maxW = isSmall ? "260px" : "420px";
 
-    popupRef.current = new maplibregl.Popup({
+    const popup = new maplibregl.Popup({
       closeButton: false,
       closeOnClick: true,
       maxWidth: maxW,
@@ -663,7 +648,20 @@ export default function MapPage() {
       .setHTML(renderStopPopup(d, isSmall))
       .addTo(map);
 
-    popupRef.current.on("close", () => {
+    popupRef.current = popup;
+
+    const el = popup.getElement();
+    el.querySelector<HTMLButtonElement>("[data-action='copy-link']")?.addEventListener("click", () => {
+      const url = `${window.location.origin}/?stop=${d.stop_id}`;
+      navigator.clipboard.writeText(url);
+      setToast(true);
+      setTimeout(() => setToast(false), 2000);
+    });
+    el.querySelector<HTMLButtonElement>("[data-action='close']")?.addEventListener("click", () => {
+      popup.remove();
+    });
+
+    popup.on("close", () => {
       setSelected(null);
       popupRef.current = null;
     });

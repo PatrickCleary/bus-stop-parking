@@ -110,7 +110,7 @@ function StopPopup({ d, isSmall }: Props) {
     <div style={{ background: "rgba(17,24,39,0.95)", borderRadius: 6, overflow: "hidden", border: "1px solid #374151", position: "relative" }}>
       {/* Copy link button */}
       <button
-        onClick={`document.dispatchEvent(new CustomEvent('copy-stop-link',{detail:${d.stop_id}}))` as unknown as React.MouseEventHandler}
+        data-action="copy-link"
         style={{ ...btnStyle, left: pad }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width={btnIconSize} height={btnIconSize} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -120,7 +120,7 @@ function StopPopup({ d, isSmall }: Props) {
       </button>
       {/* Close button */}
       <button
-        onClick={`document.dispatchEvent(new CustomEvent('close-popup'))` as unknown as React.MouseEventHandler}
+        data-action="close"
         style={{ ...btnStyle, right: pad }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width={btnIconSize} height={btnIconSize} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
