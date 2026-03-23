@@ -7,8 +7,7 @@ interface Stop {
   stop_name: string;
   snapped_lat: number;
   snapped_lon: number;
-  heading: number;
-  route_id: string;
+  heading: number; 
   route_ids: string[];
   streetview_url: string;
 }
@@ -266,7 +265,7 @@ export default function Home() {
         <div>
           <span className="font-medium">{stop.stop_name}</span>
           <span className="text-gray-500 ml-2">
-            #{stop.stop_id} &middot; {stop.route_id}
+            #{stop.stop_id} &middot; {stop.route_ids.join("/")}
           </span>
         </div>
         <a

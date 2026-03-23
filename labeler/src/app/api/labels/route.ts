@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-const LABELS_FILE = path.join(process.cwd(), "labels.json");
+const LABELS_FILE = path.join(process.cwd(), "..", "ingestion", "labels.json");
 
 function readLabels(): Record<string, unknown>[] {
   if (!fs.existsSync(LABELS_FILE)) return [];

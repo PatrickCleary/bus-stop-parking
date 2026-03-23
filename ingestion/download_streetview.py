@@ -9,7 +9,7 @@ from pathlib import Path
 
 API_KEY = "AIzaSyCnBtJVLiPSDFwdOpZiGrNJfgJXxLgo8gs"
 IMAGE_SIZE = "640x400"
-OUTPUT_DIR = Path(__file__).parent / "public" / "streetview"
+OUTPUT_DIR = Path(__file__).parent / "output" / "streetview"
 LABELS_FILE = Path(__file__).parent / "labels.json"
 
 

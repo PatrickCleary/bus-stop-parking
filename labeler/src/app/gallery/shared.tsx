@@ -15,7 +15,7 @@ export function formatImageDate(d: string): string {
 export interface Label {
   stop_id: number;
   stop_name: string;
-  route_id: string;
+  route_ids: string[];
   label: "blocked" | "not_blocked" | "bad_image" | "construction" | "uncertain" | "no_stop";
   notes: string;
   labeled_at: string;
@@ -159,7 +159,7 @@ export function GalleryCard({
         </div>
         <div className="text-xs text-gray-500 flex items-center gap-1">
           <span>
-            #{l.stop_id} &middot; {l.route_id}
+            #{l.stop_id} &middot; {l.route_ids.join("/")}
             {l.image_date && <> &middot; {formatImageDate(l.image_date)}</>}
           </span>
           <a

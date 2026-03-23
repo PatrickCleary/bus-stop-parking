@@ -2,24 +2,42 @@
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { NavBar } from "./components/NavBar";
+import { renderStopPopup } from "./components/StopPopup";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { MapboxOverlay } from "@deck.gl/mapbox";
 import { ScatterplotLayer } from "@deck.gl/layers";
+import classNames from "classnames";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 
 const STATUS_COLORS: Record<string, [number, number, number]> = {
-  blocked: [220, 38, 38],       // red
-  not_blocked: [22, 163, 74],   // green
-  construction: [234, 88, 12],  // orange
-  uncertain: [147, 51, 234],    // purple
-  no_stop: [75, 85, 99],        // gray
-  bad_image: [202, 138, 4],     // yellow
+  blocked: [220, 38, 38], // red
+  not_blocked: [22, 163, 74], // green
+  construction: [234, 88, 12], // orange
+  uncertain: [147, 51, 234], // purple
+  no_stop: [75, 85, 99], // gray
+  bad_image: [202, 138, 4], // yellow
 };
 
 const ROUTE_COLOR = "#3b82f6";
 const ROUTE_COLOR_DIM = "#1e3a5f";
+
+/** Normalize SBS route naming: "M15-SBS" → "M15+", etc. */
+function normalizeRouteId(id: string): string {
+  return id.replace(/-SBS$/, "+");
+}
+
+/** Display route ID with SBS instead of +: "M15+" → "M15 SBS" */
+function displayRouteId(id: string): string {
+  return id.replace(/\+$/, " SBS");
+}
+
+/** Check if a stop's route_ids match a selected route, accounting for SBS naming */
+function stopMatchesRoute(routeIds: string[], selectedRoute: string): boolean {
+  const normalized = normalizeRouteId(selectedRoute);
+  return routeIds.some((id) => id === selectedRoute || normalizeRouteId(id) === normalized);
+}
 
 interface LabelFeature {
   stop_id: number;
@@ -39,12 +57,26 @@ interface LabelFeature {
   image_date?: string;
 }
 
-const SHORT_MONTHS = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+const SHORT_MONTHS = [
+  "Jan.",
+  "Feb.",
+  "Mar.",
+  "Apr.",
+  "May",
+  "Jun.",
+  "Jul.",
+  "Aug.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dec.",
+];
 
 function formatImageDate(d: string): string {
   const parts = d.split("-");
   const year = parts[0];
-  const month = parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
+  const month =
+    parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
   return month ? `${month} ${year}` : year;
 }
 
@@ -92,10 +124,11 @@ function SidebarGallery({
   selectedStopId: number | null;
 }) {
   let filtered = [...data].sort(
-    (a, b) => (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0)
+    (a, b) =>
+      (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0),
   );
   if (selectedRoute) {
-    filtered = filtered.filter((d) => d.route_ids.includes(selectedRoute));
+    filtered = filtered.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute));
   }
   if (filterMode === "blocked") {
     filtered = filtered.filter((d) => d.status === "blocked");
@@ -107,7 +140,10 @@ function SidebarGallery({
     <div className="hidden md:flex flex-col w-80 bg-[#0a0a0a] border-l border-gray-800 overflow-hidden">
       <div className="px-3 py-2 border-b border-gray-800 text-xs text-gray-400 shrink-0 flex items-center justify-between">
         <span>{filtered.length} stops</span>
-        <a href="/gallery" className="text-gray-500 hover:text-white transition-colors">
+        <a
+          href="/gallery"
+          className="text-gray-500 hover:text-white transition-colors"
+        >
           Gallery &rarr;
         </a>
       </div>
@@ -126,7 +162,9 @@ function SidebarGallery({
             />
             <div className="px-3 py-2">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-medium text-white truncate">{d.stop_name}</span>
+                <span className="text-xs font-medium text-white truncate">
+                  {d.stop_name}
+                </span>
                 <span
                   className={`${LABEL_COLORS[d.status] || "bg-gray-600"} text-white text-[10px] font-mono font-medium uppercase px-1.5 py-0.5 rounded shrink-0`}
                 >
@@ -138,7 +176,9 @@ function SidebarGallery({
                 {d.image_date && <> &middot; {formatImageDate(d.image_date)}</>}
               </div>
               {d.notes && (
-                <div className="text-[10px] text-gray-500 italic mt-0.5 truncate">{d.notes}</div>
+                <div className="text-[10px] text-gray-500 italic mt-0.5 truncate">
+                  {d.notes}
+                </div>
               )}
             </div>
           </button>
@@ -162,7 +202,8 @@ function RouteDropdown({
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node))
+        setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
@@ -174,14 +215,25 @@ function RouteDropdown({
         onClick={() => setOpen(!open)}
         className="bg-gray-800 text-white text-sm rounded px-2 py-1 outline-none cursor-pointer flex-1 border border-gray-700 text-left flex items-center justify-between"
       >
-        <span>{selectedRoute ?? "All Manhattan"}</span>
-        <svg className="w-3 h-3 ml-2 text-gray-400" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <span>{selectedRoute ? displayRouteId(selectedRoute) : "All Manhattan"}</span>
+        <svg
+          className="w-3 h-3 ml-2 text-gray-400"
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M3 7 6 4 9 7" />
         </svg>
       </button>
       {selectedRoute && (
         <button
-          onClick={() => { onRouteChange(null); setOpen(false); }}
+          onClick={() => {
+            onRouteChange(null);
+            setOpen(false);
+          }}
           className="text-gray-400 hover:text-white text-xs px-1.5 py-1 rounded bg-gray-800 border border-gray-700 cursor-pointer"
           title="Clear route"
         >
@@ -189,9 +241,12 @@ function RouteDropdown({
         </button>
       )}
       {open && (
-        <div className="absolute bottom-full left-0 right-0 mb-1 bg-gray-800 border border-gray-700 rounded max-h-60 overflow-y-auto sidebar-scrollbar z-20">
+        <div className="absolute bottom-full left-0 right-0 mb-1 bg-gray-800 border border-gray-700 rounded max-h-90 overflow-y-auto sidebar-scrollbar z-20">
           <button
-            onClick={() => { onRouteChange(null); setOpen(false); }}
+            onClick={() => {
+              onRouteChange(null);
+              setOpen(false);
+            }}
             className={`w-full text-left px-2 py-1 text-sm cursor-pointer hover:bg-gray-700 ${!selectedRoute ? "text-white bg-gray-700" : "text-gray-300"}`}
           >
             All Manhattan
@@ -199,10 +254,13 @@ function RouteDropdown({
           {routeIds.map((id) => (
             <button
               key={id}
-              onClick={() => { onRouteChange(id); setOpen(false); }}
+              onClick={() => {
+                onRouteChange(id);
+                setOpen(false);
+              }}
               className={`w-full text-left px-2 py-1 text-sm cursor-pointer hover:bg-gray-700 ${selectedRoute === id ? "text-white bg-gray-700" : "text-gray-300"}`}
             >
-              {id}
+              {displayRouteId(id)}
             </button>
           ))}
         </div>
@@ -229,17 +287,20 @@ function StatusBar({
   onFilterModeChange: (mode: "all" | "blocked" | "not_blocked") => void;
 }) {
   const routeStops = selectedRoute
-    ? data.filter((d) => d.route_ids.includes(selectedRoute))
+    ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
     : data;
   const totalStopsForRoute = selectedRoute
-    ? allStops.filter((s) => s.route_ids.includes(selectedRoute)).length
+    ? allStops.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute)).length
     : allStops.length;
 
   const blocked = routeStops.filter((d) => d.status === "blocked").length;
-  const notBlocked = routeStops.filter((d) => d.status === "not_blocked").length;
-  const labelled = routeStops.length;
+  const notBlocked = routeStops.filter(
+    (d) => d.status === "not_blocked",
+  ).length;
+
+  const labelled = blocked + notBlocked;
   const unlabelled = totalStopsForRoute - labelled;
-  const pct = labelled > 0 ? Math.round((blocked / labelled) * 100) : 0;
+  const pct = labelled > 0 ? (blocked / labelled) * 100 : 0;
 
   const region = selectedRoute ?? "All Manhattan";
 
@@ -254,7 +315,7 @@ function StatusBar({
 
       {/* Stats */}
       <div className="  text-lg font-semibold text-red-400">
-        {pct}% <span className="text-sm font-normal ">blocked</span>
+        {pct.toFixed(1)}% <span className="text-sm font-normal ">blocked</span>
       </div>
       <div className="text-sm text-gray-300">
         <span className="text-red-400">{blocked}</span>
@@ -270,21 +331,25 @@ function StatusBar({
 
       {/* Filter buttons */}
       <div className="flex gap-1 mt-2">
-        {([["all", "All", "bg-gray-600"], ["blocked", "Blocked", "bg-red-600"], ["not_blocked", "Clear", "bg-green-600"]] as const).map(
-          ([mode, label, activeBg]) => (
-            <button
-              key={mode}
-              onClick={() => onFilterModeChange(mode)}
-              className={`px-3 py-1 rounded text-xs font-mono font-medium uppercase cursor-pointer transition-colors ${
-                filterMode === mode
-                  ? `${activeBg} text-white`
-                  : "bg-gray-800 text-gray-400 hover:text-white"
-              }`}
-            >
-              {label}
-            </button>
-          )
-        )}
+        {(
+          [
+            ["all", "All", "bg-gray-600"],
+            ["blocked", "Blocked", "bg-red-600"],
+            ["not_blocked", "Clear", "bg-green-600"],
+          ] as const
+        ).map(([mode, label, activeBg]) => (
+          <button
+            key={mode}
+            onClick={() => onFilterModeChange(mode)}
+            className={`px-3 py-1 rounded text-xs font-mono font-medium uppercase cursor-pointer transition-colors ${
+              filterMode === mode
+                ? `${activeBg} text-white`
+                : "bg-gray-800 text-gray-400 hover:text-white"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </div>
   );
@@ -301,8 +366,12 @@ export default function MapPage() {
   const pendingStopRef = useRef<number | null>(null);
   const hoveredIdRef = useRef<number | null>(null);
   const popupRef = useRef<maplibregl.Popup | null>(null);
-  const [allStops, setAllStops] = useState<{ stop_id: number; route_ids: string[] }[]>([]);
-  const [filterMode, setFilterMode] = useState<"all" | "blocked" | "not_blocked">("all");
+  const [allStops, setAllStops] = useState<
+    { stop_id: number; route_ids: string[] }[]
+  >([]);
+  const [filterMode, setFilterMode] = useState<
+    "all" | "blocked" | "not_blocked"
+  >("all");
   const [routeIds, setRouteIds] = useState<string[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null);
   const [routesLoaded, setRoutesLoaded] = useState(false);
@@ -312,15 +381,21 @@ export default function MapPage() {
   useEffect(() => {
     fetch("/stops.json")
       .then((r) => r.json())
-      .then((stops: { stop_id: number; route_ids: string[] }[]) => setAllStops(stops));
+      .then((stops: { stop_id: number; route_ids: string[] }[]) =>
+        setAllStops(stops),
+      );
   }, []);
 
-  // Check for ?stop= query param
+  // Check for query params on load
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const stopParam = params.get("stop");
     if (stopParam) {
       pendingStopRef.current = parseInt(stopParam, 10);
+    }
+    const routeParam = params.get("route");
+    if (routeParam) {
+      setSelectedRoute(routeParam);
     }
   }, []);
 
@@ -370,9 +445,9 @@ export default function MapPage() {
       const ids = Array.from(
         new Set<string>(
           routesGeojson.features.map(
-            (f: { properties: { route_id: string } }) => f.properties.route_id
-          )
-        )
+            (f: { properties: { route_id: string } }) => f.properties.route_id,
+          ),
+        ),
       ).sort((a, b) => {
         const aNum = parseInt(a.replace(/\D/g, ""));
         const bNum = parseInt(b.replace(/\D/g, ""));
@@ -460,7 +535,7 @@ export default function MapPage() {
       const geojson = routesGeojsonRef.current;
       if (geojson) {
         const routeFeatures = geojson.features.filter(
-          (f) => f.properties?.route_id === selectedRoute
+          (f) => f.properties?.route_id === selectedRoute,
         );
         if (routeFeatures.length > 0) {
           const bounds = new maplibregl.LngLatBounds();
@@ -483,10 +558,12 @@ export default function MapPage() {
   useEffect(() => {
     if (!overlayRef.current) return;
 
-    let filtered = data
-      .sort((a, b) => (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0));
+    let filtered = data.sort(
+      (a, b) =>
+        (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0),
+    );
     if (selectedRoute) {
-      filtered = filtered.filter((d) => d.route_ids.includes(selectedRoute));
+      filtered = filtered.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute));
     }
     if (filterMode === "blocked") {
       filtered = filtered.filter((d) => d.status === "blocked");
@@ -501,7 +578,11 @@ export default function MapPage() {
         const c = STATUS_COLORS[d.status] || [128, 128, 128];
         const isSelected = selected && d.stop_id === selected.stop_id;
         const isHovered = hovered && d.stop_id === hovered.stop_id;
-        const baseAlpha = selectedRoute ? 230 : (d.status === "blocked" ? 100 : 60);
+        const baseAlpha = selectedRoute
+          ? 230
+          : d.status === "blocked"
+            ? 100
+            : 60;
         const alpha = isSelected ? 230 : isHovered ? 204 : baseAlpha;
         return [...c, alpha] as [number, number, number, number];
       },
@@ -510,7 +591,7 @@ export default function MapPage() {
       },
       getLineColor: (d: LabelFeature) => {
         const c = STATUS_COLORS[d.status] || [128, 128, 128];
-        const alpha = selectedRoute ? 255 : (d.status === "blocked" ? 255 : 153);
+        const alpha = selectedRoute ? 255 : d.status === "blocked" ? 255 : 153;
         return [...c, alpha] as [number, number, number, number];
       },
       getLineWidth: 1,
@@ -547,6 +628,14 @@ export default function MapPage() {
 
   const handleRouteChange = useCallback((routeId: string | null) => {
     setSelectedRoute(routeId);
+    const params = new URLSearchParams(window.location.search);
+    if (routeId) {
+      params.set("route", routeId);
+    } else {
+      params.delete("route");
+    }
+    const qs = params.toString();
+    window.history.replaceState({}, "", qs ? `?${qs}` : "/");
   }, []);
 
   const showPopup = useCallback((d: LabelFeature) => {
@@ -555,20 +644,8 @@ export default function MapPage() {
     if (!map) return;
 
     if (popupRef.current) popupRef.current.remove();
-    const statusColor = `rgb(${(STATUS_COLORS[d.status] || [128, 128, 128]).join(",")})`;
-    const notesHtml = "";
-    const dateHtml = d.image_date ? ` &middot; ${formatImageDate(d.image_date)}` : "";
     const isSmall = window.innerWidth < 640;
-    const imgW = isSmall ? 240 : 400;
-    const imgH = isSmall ? 150 : 250;
     const maxW = isSmall ? "260px" : "420px";
-    const btnSize = isSmall ? "22px" : "28px";
-    const btnIconSize = isSmall ? "12" : "16";
-    const pad = isSmall ? "6px" : "8px";
-    const nameSize = isSmall ? "11px" : "13px";
-    const metaSize = isSmall ? "9px" : "11px";
-    const badgeSize = isSmall ? "8px" : "10px";
-    const badgePad = isSmall ? "1px 4px" : "2px 6px";
 
     popupRef.current = new maplibregl.Popup({
       closeButton: false,
@@ -577,31 +654,7 @@ export default function MapPage() {
       offset: 12,
     })
       .setLngLat([d.lng, d.lat])
-      .setHTML(`
-        <div style="background:rgba(17,24,39,0.95);border-radius:6px;overflow:hidden;border:1px solid #374151;position:relative">
-          <button onclick="document.dispatchEvent(new CustomEvent('copy-stop-link',{detail:${d.stop_id}}))" style="position:absolute;top:${pad};left:${pad};z-index:1;width:${btnSize};height:${btnSize};border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="${btnIconSize}" height="${btnIconSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </button>
-          <button onclick="document.dispatchEvent(new CustomEvent('close-popup'))" style="position:absolute;top:${pad};right:${pad};z-index:1;width:${btnSize};height:${btnSize};border-radius:6px;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="${btnIconSize}" height="${btnIconSize}" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
-          <img src="${toStaticUrl(d)}" style="width:${imgW}px;height:${imgH}px;object-fit:cover;display:block" />
-          <div style="padding:${pad}">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:${isSmall ? '4px' : '8px'}">
-              <span style="font-size:${nameSize};font-weight:500;color:white">${d.stop_name}</span>
-              <span style="background:${statusColor};color:white;font-size:${badgeSize};font-family:ui-monospace,monospace;font-weight:500;text-transform:uppercase;padding:${badgePad};border-radius:4px;white-space:nowrap">${LABEL_DISPLAY[d.status] || d.status.replace(/_/g, " ")}</span>
-            </div>
-            <div style="font-size:${metaSize};color:#9ca3af;display:flex;align-items:center;gap:4px">
-              <span>${d.route_ids.join(", ")}${dateHtml}</span>
-              <a href="https://www.google.com/maps/@?api=1&map_action=pano${d.pano_id ? `&pano=${d.pano_id}` : `&viewpoint=${d.view_lat ?? d.lat},${d.view_lng ?? d.lng}`}&heading=${d.view_heading ?? 0}&pitch=${d.view_pitch ?? 0}&fov=${d.view_fov ?? 90}" target="_blank" rel="noopener noreferrer" style="margin-left:auto;color:#6b7280;display:flex;align-items:center;gap:3px;white-space:nowrap;text-decoration:none" onmouseover="this.style.color='white'" onmouseout="this.style.color='#6b7280'">
-                <span>Open in Google Maps</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              </a>
-            </div>
-            ${notesHtml}
-          </div>
-        </div>
-      `)
+      .setHTML(renderStopPopup(d, isSmall))
       .addTo(map);
 
     popupRef.current.on("close", () => {
@@ -612,7 +665,8 @@ export default function MapPage() {
 
   // Open stop from query param once data is loaded
   useEffect(() => {
-    if (!data.length || pendingStopRef.current === null || !mapRef.current) return;
+    if (!data.length || pendingStopRef.current === null || !mapRef.current)
+      return;
     const stopId = pendingStopRef.current;
     pendingStopRef.current = null;
     const stop = data.find((d) => d.stop_id === stopId);
@@ -623,16 +677,22 @@ export default function MapPage() {
     window.history.replaceState({}, "", "/");
   }, [data, showPopup]);
 
-  const handleSelectStop = useCallback((d: LabelFeature) => {
-    const map = mapRef.current;
-    if (map) {
-      map.flyTo({ center: [d.lng, d.lat], zoom: 16, duration: 500 });
-    }
-    showPopup(d);
-  }, [showPopup]);
+  const handleSelectStop = useCallback(
+    (d: LabelFeature) => {
+      const map = mapRef.current;
+      if (map) {
+        map.flyTo({ center: [d.lng, d.lat], zoom: 16, duration: 500 });
+      }
+      showPopup(d);
+    },
+    [showPopup],
+  );
 
   return (
-    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }} className="flex flex-col">
+    <div
+      style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
+      className="flex flex-col"
+    >
       <NavBar active="map" />
       <div className="flex flex-1 min-h-0">
         <div className="relative flex-1">
@@ -659,11 +719,14 @@ export default function MapPage() {
         />
       </div>
 
-      {toast && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white text-black text-sm font-medium px-4 py-2 rounded-lg shadow-lg">
-          Link copied
-        </div>
-      )}
+      <div
+        className={classNames(
+          "fixed bottom-6 left-1/2 -translate-x-1/2 transition-all z-50 bg-black text-white  text-sm font-medium px-4 py-2 rounded-lg shadow-lg",
+          toast ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90",
+        )}
+      >
+        Link copied
+      </div>
     </div>
   );
 }
