@@ -36,13 +36,14 @@ function displayRouteId(id: string): string {
 /** Check if a stop's route_ids match a selected route, accounting for SBS naming */
 function stopMatchesRoute(routeIds: string[], selectedRoute: string): boolean {
   const normalized = normalizeRouteId(selectedRoute);
-  return routeIds.some((id) => id === selectedRoute || normalizeRouteId(id) === normalized);
+  return routeIds.some(
+    (id) => id === selectedRoute || normalizeRouteId(id) === normalized,
+  );
 }
 
 interface LabelFeature {
   stop_id: number;
   stop_name: string;
-  route_id: string;
   route_ids: string[];
   status: string;
   notes: string;
@@ -128,7 +129,9 @@ function SidebarGallery({
       (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0),
   );
   if (selectedRoute) {
-    filtered = filtered.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute));
+    filtered = filtered.filter((d) =>
+      stopMatchesRoute(d.route_ids, selectedRoute),
+    );
   }
   if (filterMode === "blocked") {
     filtered = filtered.filter((d) => d.status === "blocked");
@@ -215,7 +218,9 @@ function RouteDropdown({
         onClick={() => setOpen(!open)}
         className="bg-gray-800 text-white text-sm rounded px-2 py-1 outline-none cursor-pointer flex-1 border border-gray-700 text-left flex items-center justify-between"
       >
-        <span>{selectedRoute ? displayRouteId(selectedRoute) : "All Manhattan"}</span>
+        <span>
+          {selectedRoute ? displayRouteId(selectedRoute) : "All Manhattan"}
+        </span>
         <svg
           className="w-3 h-3 ml-2 text-gray-400"
           viewBox="0 0 12 12"
@@ -290,7 +295,8 @@ function StatusBar({
     ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
     : data;
   const totalStopsForRoute = selectedRoute
-    ? allStops.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute)).length
+    ? allStops.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute))
+        .length
     : allStops.length;
 
   const blocked = routeStops.filter((d) => d.status === "blocked").length;
@@ -335,13 +341,12 @@ function StatusBar({
           [
             ["all", "All", "bg-gray-600"],
             ["blocked", "Blocked", "bg-red-600"],
-            ["not_blocked", "Clear", "bg-green-600"],
           ] as const
         ).map(([mode, label, activeBg]) => (
           <button
             key={mode}
             onClick={() => onFilterModeChange(mode)}
-            className={`px-3 py-1 rounded text-xs font-mono font-medium uppercase cursor-pointer transition-colors ${
+            className={`px-3 py-1 rounded w-full text-xs font-mono font-medium uppercase cursor-pointer transition-colors ${
               filterMode === mode
                 ? `${activeBg} text-white`
                 : "bg-gray-800 text-gray-400 hover:text-white"
@@ -407,8 +412,7 @@ export default function MapPage() {
         const features: LabelFeature[] = labels.map((l) => ({
           stop_id: l.stop_id as number,
           stop_name: l.stop_name as string,
-          route_id: l.route_id as string,
-          route_ids: (l.route_ids as string[]) || [l.route_id as string],
+          route_ids: l.route_ids as string[],
           status: l.label as string,
           notes: (l.notes as string) || "",
           lat: l.snapped_lat as number,
@@ -563,7 +567,9 @@ export default function MapPage() {
         (a.status === "blocked" ? 1 : 0) - (b.status === "blocked" ? 1 : 0),
     );
     if (selectedRoute) {
-      filtered = filtered.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute));
+      filtered = filtered.filter((d) =>
+        stopMatchesRoute(d.route_ids, selectedRoute),
+      );
     }
     if (filterMode === "blocked") {
       filtered = filtered.filter((d) => d.status === "blocked");
@@ -722,7 +728,9 @@ export default function MapPage() {
       <div
         className={classNames(
           "fixed bottom-6 left-1/2 -translate-x-1/2 transition-all z-50 bg-black text-white  text-sm font-medium px-4 py-2 rounded-lg shadow-lg",
-          toast ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90",
+          toast
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 translate-y-4 scale-90",
         )}
       >
         Link copied

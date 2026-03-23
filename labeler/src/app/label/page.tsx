@@ -7,11 +7,17 @@ interface Stop {
   stop_name: string;
   snapped_lat: number;
   snapped_lon: number;
-  heading: number; 
+  heading: number;
   route_ids: string[];
   streetview_url: string;
 }
-type StatusLabels = "blocked" | "not_blocked" | "bad_image" | "construction" | "uncertain" | "no_stop";
+type StatusLabels =
+  | "blocked"
+  | "not_blocked"
+  | "bad_image"
+  | "construction"
+  | "uncertain"
+  | "no_stop";
 
 interface PovState {
   pano: string;
@@ -51,7 +57,16 @@ export default function Home() {
 
   const svContainerRef = useRef<HTMLDivElement>(null);
   const panoRef = useRef<google.maps.StreetViewPanorama | null>(null);
-  const povRef = useRef<PovState>({ pano: "", heading: 0, pitch: 0, zoom: 1, fov: 90, lat: 0, lng: 0, image_date: "" });
+  const povRef = useRef<PovState>({
+    pano: "",
+    heading: 0,
+    pitch: 0,
+    zoom: 1,
+    fov: 90,
+    lat: 0,
+    lng: 0,
+    image_date: "",
+  });
 
   useEffect(() => {
     loadGoogleMaps().then(() => setMapsLoaded(true));
@@ -97,13 +112,16 @@ export default function Home() {
     const pos = { lat: stop.snapped_lat, lng: stop.snapped_lon };
 
     if (!panoRef.current) {
-      panoRef.current = new google.maps.StreetViewPanorama(svContainerRef.current, {
-        position: pos,
-        pov: { heading: stop.heading, pitch: 0 },
-        zoom: 1,
-        addressControl: false,
-        showRoadLabels: false,
-      });
+      panoRef.current = new google.maps.StreetViewPanorama(
+        svContainerRef.current,
+        {
+          position: pos,
+          pov: { heading: stop.heading, pitch: 0 },
+          zoom: 1,
+          addressControl: false,
+          showRoadLabels: false,
+        },
+      );
 
       // Track pov changes
       panoRef.current.addListener("pov_changed", () => {
@@ -172,7 +190,6 @@ export default function Home() {
         snapped_lat: stop.snapped_lat,
         snapped_lon: stop.snapped_lon,
         heading: stop.heading,
-        route_id: stop.route_id,
         route_ids: stop.route_ids,
         label,
         notes,
@@ -216,7 +233,7 @@ export default function Home() {
         }
       }
     },
-    [stops, stopIndex, notes, labeledIds]
+    [stops, stopIndex, notes, labeledIds],
   );
 
   handleLabelRef.current = handleLabel;
@@ -249,7 +266,10 @@ export default function Home() {
       <div className="bg-gray-900 border-b border-gray-800 px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <h1 className="text-lg font-semibold">Bus Stop Labeler</h1>
-          <a href="/label/gallery" className="text-sm text-gray-400 hover:text-white">
+          <a
+            href="/label/gallery"
+            className="text-sm text-gray-400 hover:text-white"
+          >
             Gallery
           </a>
           <a href="/" className="text-sm text-gray-400 hover:text-white">
@@ -282,13 +302,18 @@ export default function Home() {
             if (!customSvUrl.trim() || !panoRef.current) return;
             const url = customSvUrl.trim();
             // Try to extract @lat,lng,... or pano ID from Google Maps Street View URL
-            const coordMatch = url.match(/@(-?[\d.]+),(-?[\d.]+),[\d.]+a,([\d.]+)y,([\d.]+)h/);
+            const coordMatch = url.match(
+              /@(-?[\d.]+),(-?[\d.]+),[\d.]+a,([\d.]+)y,([\d.]+)h/,
+            );
             const panoMatch = url.match(/[!&]1s([A-Za-z0-9_-]+)/);
             if (panoMatch) {
               panoRef.current.setPano(panoMatch[1]);
               const headingMatch = url.match(/([\d.]+)h/);
               if (headingMatch) {
-                panoRef.current.setPov({ heading: parseFloat(headingMatch[1]), pitch: 0 });
+                panoRef.current.setPov({
+                  heading: parseFloat(headingMatch[1]),
+                  pitch: 0,
+                });
               }
             } else if (coordMatch) {
               const lat = parseFloat(coordMatch[1]);
