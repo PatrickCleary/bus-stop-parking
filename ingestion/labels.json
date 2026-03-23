@@ -6361,22 +6361,23 @@
     "snapped_lat": 40.766466498823526,
     "snapped_lon": -73.98226968470588,
     "heading": 17.7,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSHENJQUJJaEJMX0pzTElsZllIaFdfNURObW1jUWc.",
-    "view_heading": 317.536772576898,
-    "view_pitch": -19.34618208886475,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.76645515617585,
-    "view_lng": -73.98227078844907,
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T01:54:26.186Z",
     "route_ids": [
       "M31",
       "M57"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "KA9K6x41mBiNUUb-4TGuMA",
+    "view_heading": 6.7,
+    "view_pitch": 0,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.76651836798025,
+    "view_lng": -73.98224836982347,
+    "image_date": "2024-08",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:25:05.326Z"
   },
   {
     "stop_id": 400747,
@@ -13628,23 +13629,23 @@
     "snapped_lat": 40.71672439276936,
     "snapped_lon": -73.97578642686118,
     "heading": 301.3,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "dY_xNMBEgakbfxpubfMKRw",
-    "view_heading": 257.6308402854577,
-    "view_pitch": -3.4950256803053463,
-    "view_zoom": 0.6027353551045773,
-    "view_fov": 118.53076402127141,
-    "view_lat": 40.71668273387275,
-    "view_lng": -73.97579779491494,
-    "image_date": "2024-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T05:04:51.071Z",
     "route_ids": [
       "M14D-SBS",
       "M21"
-    ]
+    ],
+    "label": "blocked",
+    "notes": "",
+    "pano_id": "MswbBTDpYIvq3kK43FSuGg",
+    "view_heading": 221.12825687843812,
+    "view_pitch": -0.9353687372534694,
+    "view_zoom": 2.222029787742219,
+    "view_fov": 38.581125044654534,
+    "view_lat": 40.71702687684105,
+    "view_lng": -73.9756393346786,
+    "image_date": "2024-09",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:31:24.831Z"
   },
   {
     "stop_id": 401608,
@@ -14092,22 +14093,22 @@
     "snapped_lat": 40.73215393481845,
     "snapped_lon": -73.98198951557679,
     "heading": 134.1,
-    "label": "no_stop",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "f_LnI86P91PBxGF4SyHYEg",
-    "view_heading": 193.39752276443184,
-    "view_pitch": -6.91350209632779,
-    "view_zoom": 1.8886688064824235,
-    "view_fov": 48.6101031314761,
-    "view_lat": 40.73214621771849,
-    "view_lng": -73.98176609971628,
+    "pano_id": "SmjwEU-4WCZIL6zIB5431w",
+    "view_heading": 152.28,
+    "view_pitch": 0,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.73158336371092,
+    "view_lng": -73.98236736785825,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:06:53.347Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:33:14.717Z"
   },
   {
     "stop_id": 401688,
@@ -14138,22 +14139,22 @@
     "snapped_lat": 40.73514599594321,
     "snapped_lon": -73.97980222515213,
     "heading": 133.6,
-    "label": "no_stop",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "vLPz7gP2W-BE0BKb4TkHpA",
-    "view_heading": 128.15051803793358,
-    "view_pitch": -2.4766857091023695,
+    "pano_id": "ujyhN5qGrqIc2kwNWjPTeA",
+    "view_heading": 139.60320509761561,
+    "view_pitch": -0.7046215830271478,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.73515063923805,
-    "view_lng": -73.97985539068956,
+    "view_lat": 40.73537892404305,
+    "view_lng": -73.97963792717808,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:07:07.465Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:33:38.494Z"
   },
   {
     "stop_id": 401690,
@@ -14207,22 +14208,22 @@
     "snapped_lat": 40.741972268703904,
     "snapped_lon": -73.97482920653319,
     "heading": 133.5,
-    "label": "uncertain",
-    "notes": "",
-    "pano_id": "CEHdGdrIh9odf_7vbuHnog",
-    "view_heading": 52.261335064807746,
-    "view_pitch": -11.92848058997302,
-    "view_zoom": 0.3517946031088224,
-    "view_fov": 141.0495734881708,
-    "view_lat": 40.74179855890982,
-    "view_lng": -73.97500970728873,
+    "route_ids": [
+      "M15"
+    ],
+    "label": "blocked",
+    "notes": "so blocked it's hard to se",
+    "pano_id": "wfuqmkppBbVDPrwF3rW2SQ",
+    "view_heading": 64.48785916080995,
+    "view_pitch": -5.679266900862771,
+    "view_zoom": 2.0644903284478606,
+    "view_fov": 43.032739100843415,
+    "view_lat": 40.74196342810235,
+    "view_lng": -73.97488962856526,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:07:34.153Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:34:50.644Z"
   },
   {
     "stop_id": 401696,
@@ -14299,11 +14300,14 @@
     "snapped_lat": 40.750689168357,
     "snapped_lon": -73.9684671561866,
     "heading": 133.6,
-    "label": "uncertain",
-    "notes": "",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "blocked",
+    "notes": "Seems people are boarding while it's in traffic bc of the bus in the lane",
     "pano_id": "XUrsenkKPeqoGnYfDxnCVg",
-    "view_heading": 134.87671709840555,
-    "view_pitch": -3.5554297581007717,
+    "view_heading": 168.48,
+    "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
     "view_lat": 40.75067171820305,
@@ -14311,10 +14315,7 @@
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:08:04.686Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:36:41.320Z"
   },
   {
     "stop_id": 401701,
@@ -14554,23 +14555,23 @@
     "snapped_lat": 40.777186336113274,
     "snapped_lon": -73.94913543169734,
     "heading": 133.6,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0VyNkdMRFE.",
-    "view_heading": 133.6,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.777178416783286,
-    "view_lng": -73.94912020544947,
-    "image_date": "2016-06",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T05:09:11.760Z",
     "route_ids": [
       "M15",
       "M15-SBS"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "DdxRqJYiCK3GKcPp7k5N_Q",
+    "view_heading": 72.83588138174362,
+    "view_pitch": -4.4095027026537394,
+    "view_zoom": 2.2337149302905037,
+    "view_fov": 38.26989840656768,
+    "view_lat": 40.77737030508902,
+    "view_lng": -73.9490248650397,
+    "image_date": "2024-08",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:40:21.255Z"
   },
   {
     "stop_id": 401716,
@@ -15019,22 +15020,22 @@
     "snapped_lat": 40.77626681594092,
     "snapped_lon": -73.9529040366326,
     "heading": 313.5,
-    "label": "bad_image",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "CAoSF0NJSE0wb2dLRUlDQWdJRDR5Tl9mbndF",
-    "view_heading": 313.5,
+    "pano_id": "QqRVCqalKcrxME1Rf1WLpA",
+    "view_heading": 291.7,
     "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.77623553543073,
-    "view_lng": -73.95289979146959,
-    "image_date": "2017-01",
+    "view_lat": 40.77623903706199,
+    "view_lng": -73.95301073570079,
+    "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:10:49.458Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:40:00.659Z"
   },
   {
     "stop_id": 401755,
@@ -15551,22 +15552,22 @@
     "snapped_lat": 40.7171044888284,
     "snapped_lon": -73.99158522847601,
     "heading": 303.8,
-    "label": "no_stop",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "JY4JtmqFOuF_MMY-7HbfOQ",
-    "view_heading": 319.35338660553435,
-    "view_pitch": 2.0755891220148897,
+    "pano_id": "YgcrSOpORsNPQiHmpHkY9w",
+    "view_heading": 331.25,
+    "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.71710874413553,
-    "view_lng": -73.99159590268047,
+    "view_lat": 40.71660603656609,
+    "view_lng": -73.9918577393155,
     "image_date": "2024-11",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T05:20:23.592Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:32:27.108Z"
   },
   {
     "stop_id": 401793,
@@ -27217,22 +27218,22 @@
     "snapped_lat": 40.74077764705883,
     "snapped_lon": -73.9788024117647,
     "heading": 313.1,
-    "label": "no_stop",
+    "route_ids": [
+      "M15-SBS"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0VyX2FsVEE.",
-    "view_heading": 313.1,
+    "pano_id": "8DeCWO_JayReTaujlKg_Pw",
+    "view_heading": 306.77,
     "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.740777947800886,
-    "view_lng": -73.97881003909723,
-    "image_date": "2018-03",
+    "view_lat": 40.74076582845895,
+    "view_lng": -73.97889460365195,
+    "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T06:25:53.026Z",
-    "route_ids": [
-      "M15-SBS"
-    ]
+    "labeled_at": "2026-03-23T22:44:32.568Z"
   },
   {
     "stop_id": 403526,
@@ -27896,22 +27897,22 @@
     "snapped_lat": 40.71938701869963,
     "snapped_lon": -73.99041994067706,
     "heading": 304.5,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "u1JiFatiqdoeqR7lxrB2Xw",
-    "view_heading": 6.656266580164761,
-    "view_pitch": -1.039401534493365,
-    "view_zoom": 2.0879762216666378,
-    "view_fov": 42.33787264030639,
-    "view_lat": 40.71940062160351,
-    "view_lng": -73.99079254619893,
-    "image_date": "2024-11",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T06:29:59.990Z",
     "route_ids": [
       "M15"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "tA9ZLo-3UCgevNCNljpMnQ",
+    "view_heading": 286.19,
+    "view_pitch": 0,
+    "view_zoom": 1,
+    "view_fov": 90,
+    "view_lat": 40.71956272299124,
+    "view_lng": -73.99032581058918,
+    "image_date": "2024-09",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:32:51.813Z"
   },
   {
     "stop_id": 403670,
@@ -29712,24 +29713,24 @@
     "snapped_lat": 40.767747880750925,
     "snapped_lon": -73.98531860983356,
     "heading": 197.7,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSHENJQUJJaEFkRkJvX3paS0x1REhRVjlkNDZIdTY.",
-    "view_heading": 197.7,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.767738283239865,
-    "view_lng": -73.9852909121008,
-    "image_date": "2025-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T06:37:00.577Z",
     "route_ids": [
       "M12",
       "M31",
       "M57"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "VMcuX-zlnoYYPdgXu7LLwA",
+    "view_heading": 205.43,
+    "view_pitch": 0,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.7677814354726,
+    "view_lng": -73.98534166706155,
+    "image_date": "2024-09",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:25:43.704Z"
   },
   {
     "stop_id": 403986,
@@ -29762,22 +29763,22 @@
     "snapped_lat": 40.76997981662592,
     "snapped_lon": -73.99163322249389,
     "heading": 314.3,
-    "label": "no_stop",
+    "route_ids": [
+      "M12"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "MQLxX0TuGWbUWphg6V7a8Q",
-    "view_heading": 263.8858152027893,
-    "view_pitch": 4.676243577302458,
+    "pano_id": "x836lxEmjCkvowF4UYA7xg",
+    "view_heading": 308.88521144330673,
+    "view_pitch": -0.3575945970512606,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.76995306865542,
-    "view_lng": -73.9916534709028,
+    "view_lat": 40.770039405370994,
+    "view_lng": -73.99160442134375,
     "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T06:37:10.125Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:26:09.435Z"
   },
   {
     "stop_id": 403989,
@@ -36696,22 +36697,22 @@
     "snapped_lat": 40.732164783452205,
     "snapped_lon": -73.9819816469205,
     "heading": 133.7,
-    "label": "no_stop",
+    "route_ids": [
+      "M15-SBS"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "5tGrqYq3BAeLXq_yrNvalg",
-    "view_heading": 67.6004574861728,
-    "view_pitch": -1.386436393286857,
-    "view_zoom": 0.3243122000451,
-    "view_fov": 143.76223136407023,
-    "view_lat": 40.732146080553406,
-    "view_lng": -73.98195477526122,
+    "pano_id": "tDRcxlqrgo4kkXKznhFlGw",
+    "view_heading": 112.59,
+    "view_pitch": 0,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.731906750447244,
+    "view_lng": -73.98212964073869,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:50:21.197Z",
-    "route_ids": [
-      "M15-SBS"
-    ]
+    "labeled_at": "2026-03-23T22:44:08.475Z"
   },
   {
     "stop_id": 405323,
@@ -37023,22 +37024,22 @@
     "snapped_lat": 40.8021733603108,
     "snapped_lon": -73.93398191702889,
     "heading": 313.5,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0U3OXExZXc.",
-    "view_heading": 313.5,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.80216361746702,
-    "view_lng": -73.93394461395336,
-    "image_date": "2016-06",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T18:51:15.151Z",
     "route_ids": [
       "M15"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "C94bSoB8QeXg542oJApW7A",
+    "view_heading": 302.68040474309515,
+    "view_pitch": -1.9502945200577813,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.802407169711984,
+    "view_lng": -73.93383213394418,
+    "image_date": "2023-09",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:41:19.215Z"
   },
   {
     "stop_id": 405350,
@@ -37442,22 +37443,22 @@
     "snapped_lat": 40.758399020328795,
     "snapped_lon": -73.96596705091038,
     "heading": 313.6,
-    "label": "no_stop",
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "_t9zrwsfTgG4SVIIm9gLTA",
-    "view_heading": 254.77274748246117,
-    "view_pitch": 4.644030598812137,
+    "pano_id": "lQnS3Kxba3xdixXaaR9fqQ",
+    "view_heading": 264.62,
+    "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.75837852907783,
-    "view_lng": -73.96601525386302,
+    "view_lat": 40.758863120786245,
+    "view_lng": -73.96566979821195,
     "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:52:47.403Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:37:35.312Z"
   },
   {
     "stop_id": 405390,
@@ -37885,22 +37886,22 @@
     "snapped_lat": 40.76594104954129,
     "snapped_lon": -73.99457803486239,
     "heading": 314.3,
-    "label": "no_stop",
+    "route_ids": [
+      "M12"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "pJlMaYau76g18gUioYPYlQ",
-    "view_heading": 319.82292654895605,
-    "view_pitch": -18.977766896355334,
-    "view_zoom": 0.8781359471416126,
-    "view_fov": 97.93259099256797,
-    "view_lat": 40.76598031902294,
-    "view_lng": -73.9946024292953,
+    "pano_id": "aPyDM8f0KFZuvsXse45xzw",
+    "view_heading": 254.07485196129306,
+    "view_pitch": -10.228846035605073,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.766057655258905,
+    "view_lng": -73.99454459295195,
     "image_date": "2025-10",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:57:24.875Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:27:06.707Z"
   },
   {
     "stop_id": 405447,
@@ -37954,22 +37955,22 @@
     "snapped_lat": 40.748294454266954,
     "snapped_lon": -74.00753028490153,
     "heading": 315.2,
-    "label": "no_stop",
+    "route_ids": [
+      "M12"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "Itx8mREqHahH4Zhfnj7dbQ",
-    "view_heading": 315.2,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.748257235720764,
-    "view_lng": -74.00751384378684,
+    "pano_id": "zwMsJ0Q3qWd5F3A_ulUAzQ",
+    "view_heading": 348.567053028576,
+    "view_pitch": -1.5479962285279782,
+    "view_zoom": 2.151805225056119,
+    "view_fov": 40.50555503352737,
+    "view_lat": 40.748402032508,
+    "view_lng": -74.00736679691886,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:57:37.519Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:30:07.407Z"
   },
   {
     "stop_id": 405452,
@@ -38000,22 +38001,22 @@
     "snapped_lat": 40.7522340160553,
     "snapped_lon": -74.00762581179619,
     "heading": 117.7,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "Br9B5S9_imnTLF-uquu6lg",
-    "view_heading": 38.77533334494994,
-    "view_pitch": -1.4231901385618073,
-    "view_zoom": 3.2031427020161933,
-    "view_fov": 19.5447658290756,
-    "view_lat": 40.75185455045314,
-    "view_lng": -74.00780049519166,
+    "route_ids": [
+      "M12"
+    ],
+    "label": "blocked",
+    "notes": "ladder ",
+    "pano_id": "AG-BXAP-2LLlcMRDggXQ5Q",
+    "view_heading": 85.29220570574142,
+    "view_pitch": -2.617512939369206,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.752115981686,
+    "view_lng": -74.0077051838714,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:59:00.452Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:29:24.493Z"
   },
   {
     "stop_id": 405456,
@@ -38744,22 +38745,22 @@
     "snapped_lat": 40.78363843076923,
     "snapped_lon": -73.94752955384615,
     "heading": 315.8,
-    "label": "bad_image",
+    "route_ids": [
+      "M15-SBS"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0U3OENPVVE.",
-    "view_heading": 315.8,
+    "pano_id": "68c1mAI44R-UDM19AJZKFw",
+    "view_heading": 331.91,
     "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.78361718796089,
-    "view_lng": -73.9475148388856,
-    "image_date": "2016-05",
+    "view_lat": 40.783710967178166,
+    "view_lng": -73.94755394401193,
+    "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:01:25.633Z",
-    "route_ids": [
-      "M15-SBS"
-    ]
+    "labeled_at": "2026-03-23T22:45:07.341Z"
   },
   {
     "stop_id": 405517,
@@ -39143,22 +39144,22 @@
     "snapped_lat": 40.793555837837836,
     "snapped_lon": -73.94029197297297,
     "heading": 313.3,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSF0NJSE0wb2dLRUlDQWdJQ0VyN3FDMGdF",
-    "view_heading": 313.3,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.793557819952376,
-    "view_lng": -73.94024428723364,
-    "image_date": "2016-06",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:08:49.664Z",
     "route_ids": [
       "M15"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "1wSQo5GDuCT_jJLPeGHk6Q",
+    "view_heading": 294.4814768833809,
+    "view_pitch": -3.214013742246266,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.793602281962556,
+    "view_lng": -73.94029047965624,
+    "image_date": "2024-08",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:40:42.323Z"
   },
   {
     "stop_id": 405561,
@@ -39374,22 +39375,22 @@
     "snapped_lat": 40.76403588108108,
     "snapped_lon": -73.99596708648649,
     "heading": 313.8,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "w9f3mA6GtV_iZG-5cbR3Hg",
-    "view_heading": 345.1299222458712,
-    "view_pitch": -4.276795176457199,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.764056019465244,
-    "view_lng": -73.99592853564324,
-    "image_date": "2021-06",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:09:42.222Z",
     "route_ids": [
       "M12"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "9Hj1l8Byr6QnG_z1Vzci7Q",
+    "view_heading": 253.97210529759857,
+    "view_pitch": -7.8357498682546805,
+    "view_zoom": 0.34105935736970017,
+    "view_fov": 142.103052884008,
+    "view_lat": 40.76417020618125,
+    "view_lng": -73.99600134613924,
+    "image_date": "2017-10",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:27:38.775Z"
   },
   {
     "stop_id": 405585,
@@ -39397,22 +39398,22 @@
     "snapped_lat": 40.76820753820472,
     "snapped_lon": -73.9929275232638,
     "heading": 313.9,
-    "label": "no_stop",
+    "route_ids": [
+      "M12"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "a4Sbns2c8F_urUHm_YQ1sQ",
-    "view_heading": 246.67131444957715,
-    "view_pitch": 2.318059707681357,
+    "pano_id": "uatvok5z8qogmDy3UCjE2Q",
+    "view_heading": 267.6974739235066,
+    "view_pitch": -2.9975033191405913,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.76817077083074,
-    "view_lng": -73.99296444350065,
+    "view_lat": 40.76859180016445,
+    "view_lng": -73.9926588495948,
     "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:09:49.255Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:26:41.527Z"
   },
   {
     "stop_id": 405586,
@@ -39420,22 +39421,22 @@
     "snapped_lat": 40.76197466478339,
     "snapped_lon": -73.99747286589239,
     "heading": 313.4,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "jybmxwA2aAHLfWkXabbOjQ",
-    "view_heading": 233.34284590779598,
-    "view_pitch": -3.3768826422313225,
-    "view_zoom": 2.6008642276091503,
-    "view_fov": 29.67114855389324,
-    "view_lat": 40.76199509735947,
-    "view_lng": -73.99745746058275,
-    "image_date": "2023-03",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:09:58.466Z",
     "route_ids": [
       "M12"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "7d-UZRVKVS9kUtJhaYqESQ",
+    "view_heading": 284.76,
+    "view_pitch": 0,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.76227695140041,
+    "view_lng": -73.9972185864798,
+    "image_date": "2021-06",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:28:18.936Z"
   },
   {
     "stop_id": 405587,
@@ -41092,22 +41093,22 @@
     "snapped_lat": 40.76644710344828,
     "snapped_lon": -73.9822217586207,
     "heading": 16.9,
-    "label": "bad_image",
+    "route_ids": [
+      "M12"
+    ],
+    "label": "not_blocked",
     "notes": "",
-    "pano_id": "CAoSHENJQUJJaEJMX0pzTElsZllIaFdfNURObW1jUWc.",
-    "view_heading": 16.9,
+    "pano_id": "KA9K6x41mBiNUUb-4TGuMA",
+    "view_heading": 6.7,
     "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.76645515617585,
-    "view_lng": -73.98227078844907,
-    "image_date": "2025-09",
+    "view_lat": 40.76651836798025,
+    "view_lng": -73.98224836982347,
+    "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:16:36.710Z",
-    "route_ids": [
-      "M12"
-    ]
+    "labeled_at": "2026-03-23T22:25:00.780Z"
   },
   {
     "stop_id": 804142,
@@ -41580,22 +41581,22 @@
     "snapped_lat": 40.72366304107833,
     "snapped_lon": -73.98817680257116,
     "heading": 135.2,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0U3N0NKY2c.",
-    "view_heading": 135.2,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.723662515673816,
-    "view_lng": -73.98818688261838,
-    "image_date": "2018-03",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:18:11.021Z",
     "route_ids": [
       "M15-SBS"
-    ]
+    ],
+    "label": "not_blocked",
+    "notes": "",
+    "pano_id": "nV46Xo15CPLYHjE04WJLcQ",
+    "view_heading": 120.1402065889587,
+    "view_pitch": -5.334908459736496,
+    "view_zoom": 1.0000000000000002,
+    "view_fov": 89.99999999999999,
+    "view_lat": 40.723559204668405,
+    "view_lng": -73.98826139981553,
+    "image_date": "2024-09",
+    "static_width": 640,
+    "static_height": 400,
+    "labeled_at": "2026-03-23T22:43:32.118Z"
   },
   {
     "stop_id": 903105,
@@ -41925,22 +41926,22 @@
     "snapped_lat": 40.76937171781625,
     "snapped_lon": -73.95796021488411,
     "heading": 313.2,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "IF2SrTzbCSLvXTOF2Aw7MA",
-    "view_heading": 261.85084081245725,
-    "view_pitch": 0.45587621081008933,
-    "view_zoom": 2.1476084068791996,
-    "view_fov": 40.62355775949827,
-    "view_lat": 40.769382097447874,
-    "view_lng": -73.9579325774148,
+    "route_ids": [
+      "M15"
+    ],
+    "label": "not_blocked",
+    "notes": "moved to 73rd st?",
+    "pano_id": "VRATLYCQlcOYFgC_TtPFXA",
+    "view_heading": 268.61997342906466,
+    "view_pitch": -2.7802459980482155,
+    "view_zoom": 1.924066985834211,
+    "view_fov": 47.4319116838653,
+    "view_lat": 40.7684711668444,
+    "view_lng": -73.95862109430482,
     "image_date": "2024-09",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:19:14.752Z",
-    "route_ids": [
-      "M15"
-    ]
+    "labeled_at": "2026-03-23T22:39:41.132Z"
   },
   {
     "stop_id": 903366,
