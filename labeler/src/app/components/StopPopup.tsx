@@ -144,6 +144,7 @@ function StopPopup({ d, isSmall }: Props) {
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
             <a
               href={`/label?stop=${d.stop_id}`}
+              target="_blank"
               style={{ color: "#6b7280", display: "flex", alignItems: "center", gap: 3, whiteSpace: "nowrap", textDecoration: "none" }}
             >
               <span>Label</span>
