@@ -22,7 +22,7 @@ export function InfoButton() {
         >
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
           <div
-            className="relative z-10 max-w-xl px-8 py-10 text-white max-h-[90svh] overflow-y-auto"
+            className="relative z-10 max-w-xl px-8 py-10 text-white max-h-[100svh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-lg md:text-2xl font-semibold mb-4">
