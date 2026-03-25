@@ -46,19 +46,11 @@ export const LABEL_CONFIG = {
   no_data: { text: "No Data", bg: "bg-cyan-600", order: 6 },
 } as const;
 
+const SUPABASE_STORAGE =
+  "https://kevndteqglsoslznrntz.supabase.co/storage/v1/object/public/bus-blockers/streetview";
+
 export function toStaticUrl(l: Label): string {
-  const heading = l.view_heading ?? l.heading;
-  const pitch = l.view_pitch ?? 0;
-  const fov = l.view_fov ?? 90;
-  const w = l.static_width ?? 640;
-  const h = l.static_height ?? 400;
-  const base = `https://maps.googleapis.com/maps/api/streetview?size=${w}x${h}&heading=${heading}&pitch=${pitch}&fov=${fov}&key=${API_KEY}`;
-  if (l.pano_id) {
-    return `${base}&pano=${l.pano_id}`;
-  }
-  const lat = l.view_lat ?? l.snapped_lat;
-  const lng = l.view_lng ?? l.snapped_lon;
-  return `${base}&location=${lat},${lng}`;
+  return `${SUPABASE_STORAGE}/${l.stop_id}.jpg`;
 }
 
 const VALID_FILTERS = new Set(["all", "blocked", "not_blocked", "construction", "uncertain", "no_stop", "bad_image", "no_data"]);

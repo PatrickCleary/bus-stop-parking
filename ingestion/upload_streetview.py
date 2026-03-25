@@ -5,8 +5,11 @@ import os
 import urllib.request
 import urllib.error
 from pathlib import Path
+from dotenv import load_dotenv
 
-SUPABASE_URL = "https://kevndteqglsoslznrntz.supabase.co"
+load_dotenv(Path(__file__).parent / ".env.local")
+
+SUPABASE_URL = os.environ.get("SUPABASE_URL")
 BUCKET = "bus-blockers"
 FOLDER = "streetview"
 IMAGE_DIR = Path(__file__).parent / "output" / "streetview"
@@ -26,6 +29,7 @@ def upload_image(service_key: str, filepath: Path) -> bool:
         method="POST",
         headers={
             "Authorization": f"Bearer {service_key}",
+            "apikey": service_key,
             "Content-Type": "image/jpeg",
             "x-upsert": "true",
         },
@@ -47,8 +51,7 @@ def upload_image(service_key: str, filepath: Path) -> bool:
 def main():
     service_key = os.environ.get("SUPABASE_SERVICE_KEY")
     if not service_key:
-        print("Error: set SUPABASE_SERVICE_KEY environment variable")
-        print("  export SUPABASE_SERVICE_KEY=your_service_role_key")
+        print("Error: set SUPABASE_SERVICE_KEY in ingestion/.env.local")
         raise SystemExit(1)
 
     images = sorted(IMAGE_DIR.glob("*.jpg"))

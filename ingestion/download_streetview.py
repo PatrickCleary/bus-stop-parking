@@ -51,13 +51,16 @@ def build_metadata_url(entry):
 
 
 def fetch_metadata(entry):
-    """Fetch image date from the Street View Metadata API."""
+    """Fetch metadata (date, pano_id) from the Street View Metadata API."""
     url = build_metadata_url(entry)
     try:
         with urllib.request.urlopen(url) as resp:
             data = json.loads(resp.read())
             if data.get("status") == "OK":
-                return data.get("date")  # e.g. "2022-07"
+                return {
+                    "date": data.get("date"),  # e.g. "2022-07"
+                    "pano_id": data.get("pano_id"),
+                }
     except Exception:
         pass
     return None
@@ -69,13 +72,20 @@ def main():
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+    # Load existing manifest to compare pano IDs
+    manifest_path = OUTPUT_DIR / "manifest.json"
+    existing_manifest = {}
+    if manifest_path.exists():
+        with open(manifest_path) as f:
+            existing_manifest = json.load(f)
+
     total = len(labels)
     skipped = 0
     downloaded = 0
     errors = 0
-    dates = {}  # stop_id -> image_date
+    metadata_map = {}  # stop_id -> {date, pano_id}
 
-    for i, entry in enumerate(labels[:20]):  # Limit to first 200 for testing
+    for i, entry in enumerate(labels):  # Limit to first 200 for testing
         stop_id = entry["stop_id"]
         label = entry.get("label", "unknown")
         if label not in ("blocked", "not_blocked"):
@@ -84,14 +94,21 @@ def main():
         filename = f"{stop_id}.jpg"
         filepath = OUTPUT_DIR / filename
 
-        # Always fetch metadata for the date
-        image_date = fetch_metadata(entry)
-        if image_date:
-            dates[stop_id] = image_date
+        # Fetch metadata to get date and pano_id
+        meta = fetch_metadata(entry)
+        if meta:
+            metadata_map[stop_id] = meta
 
-        if filepath.exists():
+        # Re-download if file missing or pano_id has changed
+        existing_pano = existing_manifest.get(str(stop_id), {}).get("pano_id")
+        current_pano = meta["pano_id"] if meta else None
+        needs_download = not filepath.exists() or (current_pano and current_pano != existing_pano)
+
+        if not needs_download:
             skipped += 1
         else:
+            if filepath.exists() and current_pano != existing_pano:
+                print(f"  Re-downloading {stop_id}: pano changed {existing_pano} -> {current_pano}")
             url = build_image_url(entry)
             try:
                 urllib.request.urlretrieve(url, filepath)
@@ -121,14 +138,14 @@ def main():
         if label not in ("blocked", "not_blocked"):
             continue
         filename = f"{stop_id}.jpg"
+        meta = metadata_map.get(stop_id, {})
         manifest[str(stop_id)] = {
             "filename": filename,
             "label": label,
             "stop_name": entry.get("stop_name", ""),
-            "image_date": dates.get(stop_id),
+            "image_date": meta.get("date") if meta else None,
+            "pano_id": meta.get("pano_id") if meta else None,
         }
-
-    manifest_path = OUTPUT_DIR / "manifest.json"
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2)
     print(f"Manifest written to: {manifest_path}")

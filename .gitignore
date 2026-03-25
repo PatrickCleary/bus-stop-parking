@@ -6,3 +6,4 @@ analysis/data_inputs/
 .env.local
 .gitignore
 analysis/map.qgz
+ingestion/output/streetview

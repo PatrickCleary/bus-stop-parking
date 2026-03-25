@@ -82,16 +82,11 @@ function formatImageDate(d: string): string {
   return month ? `${month} ${year}` : year;
 }
 
+const SUPABASE_STORAGE =
+  "https://kevndteqglsoslznrntz.supabase.co/storage/v1/object/public/bus-blockers/streetview";
+
 function toStaticUrl(d: LabelFeature): string {
-  const heading = d.view_heading ?? 0;
-  const pitch = d.view_pitch ?? 0;
-  const fov = d.view_fov ?? 90;
-  if (d.pano_id) {
-    return `https://maps.googleapis.com/maps/api/streetview?size=400x250&pano=${d.pano_id}&heading=${heading}&pitch=${pitch}&fov=${fov}&key=${API_KEY}`;
-  }
-  const lat = d.view_lat ?? d.lat;
-  const lng = d.view_lng ?? d.lng;
-  return `https://maps.googleapis.com/maps/api/streetview?size=400x250&location=${lat},${lng}&heading=${heading}&pitch=${pitch}&fov=${fov}&key=${API_KEY}`;
+  return `${SUPABASE_STORAGE}/${d.stop_id}.jpg`;
 }
 
 const LABEL_DISPLAY: Record<string, string> = {
@@ -592,7 +587,7 @@ export default function MapPage() {
       getLineWidth: 1,
       lineWidthUnits: "pixels" as const,
       stroked: true,
-      getRadius: 25,
+      getRadius: 50,
       radiusUnits: "meters" as const,
       radiusMinPixels: 5,
       pickable: true,
