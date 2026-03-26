@@ -297,13 +297,15 @@ function StatusBar({
 
   return (
     <div className="absolute bottom-0 left-0 md:bottom-4 md:left-3 z-10 bg-[#0a0a0a]/90 backdrop-blur  rounded-t-lg md:rounded-lg px-4 py-3 min-w-[220px] w-full md:w-fit">
-      {/* Route selector */}
+      {/* Route selector */}{" "}
+      <p className="md:hidden italic text-xs text-gray-500 mb-2">
+        Tap any stop to see the street view image.
+      </p>
       <RouteDropdown
         selectedRoute={selectedRoute}
         routeIds={routeIds}
         onRouteChange={onRouteChange}
       />
-
       {/* Stats */}
       <div className="  text-lg font-semibold text-red-400">
         {pct.toFixed(1)}% <span className="text-sm font-normal ">blocked</span>
@@ -319,7 +321,6 @@ function StatusBar({
           {unlabelled} unlabelled
         </div>
       )}
-
       {/* Filter buttons */}
       <div className="flex gap-1 mt-2">
         {(
