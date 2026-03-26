@@ -8,6 +8,13 @@ const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 
 export const metadata: Metadata = {
   title: "Bus Stop Labeler",
+  openGraph: {
+    images: ["/social-preview.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/social-preview.png"],
+  },
 };
 
 export default function RootLayout({
