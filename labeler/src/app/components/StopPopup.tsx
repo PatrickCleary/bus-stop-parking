@@ -1,30 +1,32 @@
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
-
 const SHORT_MONTHS = [
-  "Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.",
-  "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec.",
+  "Jan.",
+  "Feb.",
+  "Mar.",
+  "Apr.",
+  "May",
+  "Jun.",
+  "Jul.",
+  "Aug.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dec.",
 ];
 
 const STATUS_COLORS: Record<string, [number, number, number]> = {
   blocked: [220, 38, 38],
   not_blocked: [22, 163, 74],
-  construction: [234, 88, 12],
-  uncertain: [147, 51, 234],
-  no_stop: [75, 85, 99],
-  bad_image: [202, 138, 4],
-  no_data: [6, 182, 212],
+  construction: [156, 163, 175],
+  no_data: [156, 163, 175],
 };
 
 const LABEL_DISPLAY: Record<string, string> = {
   blocked: "blocked",
   not_blocked: "clear",
   construction: "construction",
-  uncertain: "uncertain",
-  no_stop: "no stop",
-  bad_image: "bad image",
   no_data: "no data",
 };
 
@@ -47,7 +49,8 @@ export interface StopFeature {
 function formatImageDate(d: string): string {
   const parts = d.split("-");
   const year = parts[0];
-  const month = parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
+  const month =
+    parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
   return month ? `${month} ${year}` : year;
 }
 
@@ -104,13 +107,36 @@ function StopPopup({ d, isSmall }: Props) {
   };
 
   return (
-    <div style={{ background: "rgba(17,24,39,0.95)", borderRadius: 6, overflow: "hidden", border: "1px solid #374151", position: "relative" }}>
+    <div
+      style={{
+        background: "rgba(17,24,39,0.95)",
+        borderRadius: 6,
+        overflow: "hidden",
+        border: "1px solid #374151",
+        position: "relative",
+      }}
+    >
+      <style>{`
+        .popup-btn:hover { background: rgba(0,0,0,0.75) !important; }
+        .popup-maps-link:hover { color: #d1d5db !important; }
+      `}</style>
       {/* Copy link button */}
       <button
         data-action="copy-link"
+        className="popup-btn"
         style={{ ...btnStyle, left: pad }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width={btnIconSize} height={btnIconSize} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={btnIconSize}
+          height={btnIconSize}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
           <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
         </svg>
@@ -118,51 +144,136 @@ function StopPopup({ d, isSmall }: Props) {
       {/* Close button */}
       <button
         data-action="close"
+        className="popup-btn"
         style={{ ...btnStyle, right: pad }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width={btnIconSize} height={btnIconSize} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={btnIconSize}
+          height={btnIconSize}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
         </svg>
       </button>
 
-      <img src={toStaticUrl(d)} style={{ width: imgW, height: imgH, objectFit: "cover", display: "block" }} />
+      {d.status === "blocked" || d.status === "not_blocked" ? (
+        <img
+          src={toStaticUrl(d)}
+          style={{
+            width: imgW,
+            height: imgH,
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            width: imgW,
+            height: imgH,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#1f2937",
+            color: "#6b7280",
+            fontSize: metaSize,
+          }}
+        >
+          No data for this stop
+        </div>
+      )}
 
       <div style={{ padding: pad }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap }}>
-          <span style={{ fontSize: nameSize, fontWeight: 500, color: "white" }}>{d.stop_name}</span>
-          <span style={{ background: statusColor, color: "white", fontSize: badgeSize, fontFamily: "ui-monospace,monospace", fontWeight: 500, textTransform: "uppercase", padding: badgePad, borderRadius: 4, whiteSpace: "nowrap" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap,
+          }}
+        >
+          <span style={{ fontSize: nameSize, fontWeight: 500, color: "white" }}>
+            {d.stop_name}
+          </span>
+          <span
+            style={{
+              background: statusColor,
+              color: "white",
+              fontSize: badgeSize,
+              fontFamily: "ui-monospace,monospace",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              padding: badgePad,
+              borderRadius: 4,
+              whiteSpace: "nowrap",
+            }}
+          >
             {label}
           </span>
         </div>
-        <div style={{ fontSize: metaSize, color: "#9ca3af", display: "flex", alignItems: "center", gap: 4 }}>
+        <div
+          style={{
+            fontSize: metaSize,
+            color: "#9ca3af",
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
           <span>{d.route_ids.join(", ")}</span>
-          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8 }}>
-            <a
-              href={`/label?stop=${d.stop_id}`}
-              target="_blank"
-              style={{ color: "#6b7280", display: "flex", alignItems: "center", gap: 3, whiteSpace: "nowrap", textDecoration: "none" }}
-            >
-              <span>Label</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-              </svg>
-            </a>
+          <div
+            style={{
+              marginLeft: "auto",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            {d.image_date && (
+              <span style={{ color: "#6b7280" }}>
+                {formatImageDate(d.image_date)}
+              </span>
+            )}
             <a
               href={mapsUrl(d)}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "#6b7280", display: "flex", alignItems: "center", gap: 3, whiteSpace: "nowrap", textDecoration: "none" }}
+              className="popup-maps-link"
+              style={{
+                color: "#6b7280",
+                display: "flex",
+                alignItems: "center",
+                gap: 3,
+                whiteSpace: "nowrap",
+                textDecoration: "none",
+              }}
             >
               <span>Google Maps</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={12}
+                height={12}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 3h6v6" />
+                <path d="M10 14 21 3" />
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               </svg>
             </a>
           </div>
         </div>
-        {d.image_date && (
-          <div style={{ fontSize: metaSize, color: "#6b7280", marginTop: 2 }}>{formatImageDate(d.image_date)}</div>
-        )}
       </div>
     </div>
   );

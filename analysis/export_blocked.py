@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image
 import numpy as np
 
-LABELS = Path(__file__).parent / "../ingestion/labels.geojson"
+LABELS = Path(__file__).parent / "../ingestion/labels.json"
 STREET_VIEW_DIR = Path(__file__).parent / "../ingestion/output/streetview"
 OUTPUT_DIR = Path(__file__).parent / "outputs/blocked"
 
@@ -12,14 +12,14 @@ if OUTPUT_DIR.exists():
     shutil.rmtree(OUTPUT_DIR)
 OUTPUT_DIR.mkdir(parents=True)
 
-features = json.loads(LABELS.read_text())["features"]
-blocked = [f for f in features if f["properties"]["status"] == "blocked"]
+features = json.loads(LABELS.read_text())
+blocked = [f for f in features if f.get("label") == "blocked"]
 
 print(f"Found {len(blocked)} blocked stops")
 
 copied, missing = 0, 0
 for f in blocked:
-    stop_id = f["properties"]["stop_id"]
+    stop_id = f["stop_id"]
     src = STREET_VIEW_DIR / f"{stop_id}.jpg"
     if src.exists():
         shutil.copy2(src, OUTPUT_DIR / src.name)
