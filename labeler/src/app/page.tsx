@@ -272,10 +272,10 @@ function StatusBar({
   data: LabelFeature[];
 
   selectedRoute: string | null;
-  filterMode: "all" | "blocked" | "not_blocked";
+  filterMode: "all" | "blocked";
   routeIds: string[];
   onRouteChange: (id: string | null) => void;
-  onFilterModeChange: (mode: "all" | "blocked" | "not_blocked") => void;
+  onFilterModeChange: (mode: "all" | "blocked") => void;
 }) {
   const routeStops = selectedRoute
     ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
@@ -325,7 +325,7 @@ function StatusBar({
         {(
           [
             ["all", "All", "bg-gray-600"],
-            ["blocked", "Blocked", "bg-red-600"], 
+            ["blocked", "Blocked", "bg-red-600"],
           ] as const
         ).map(([mode, label, activeBg]) => (
           <button

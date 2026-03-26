@@ -18,7 +18,7 @@ export function InfoButton() {
     <>
       <button onClick={() => setOpen(true)} className="cursor-pointer shrink-0">
         <img
-          src="/icon.png"
+          src="/pc-icon.png"
           alt="Info"
           className="w-8 h-8 rounded border border-gray-700"
         />
