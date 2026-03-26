@@ -57,10 +57,10 @@ export function InfoButton() {
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
               <a
-                href="https://patrickcleary1.substack.com/"
+                href="https://open.substack.com/pub/patrickcleary1/p/nowhere-to-park-theres-always-the?r=1h00ph&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-red-400 hover:text-blue-600 transition-colors"
+                className="text-white underline hover:text-blue-600 transition-colors"
               >
                 Read the blog post
               </a>{" "}
