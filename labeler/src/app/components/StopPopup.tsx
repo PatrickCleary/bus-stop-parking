@@ -163,15 +163,32 @@ function StopPopup({ d, isSmall }: Props) {
         </svg>
       </button>
 
-      <img
-        src={toStaticUrl(d)}
-        style={{
-          width: imgW,
-          height: imgH,
-          objectFit: "cover",
-          display: "block",
-        }}
-      />
+      {d.status === "blocked" || d.status === "not_blocked" ? (
+        <img
+          src={toStaticUrl(d)}
+          style={{
+            width: imgW,
+            height: imgH,
+            objectFit: "cover",
+            display: "block",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            width: imgW,
+            height: imgH,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#1f2937",
+            color: "#6b7280",
+            fontSize: metaSize,
+          }}
+        >
+          No data for this stop
+        </div>
+      )}
 
       <div style={{ padding: pad }}>
         <div

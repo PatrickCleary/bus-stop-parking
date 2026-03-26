@@ -127,9 +127,7 @@ export function GalleryFilters({
         [
           ["all", "All", "bg-gray-600"],
           ["blocked", "Blocked", "bg-red-600"],
-          ["not_blocked", "Clear", "bg-green-600"],
-          ["construction", "Construction", "bg-orange-600"], 
-          ["no_data", "No Data", "bg-cyan-600"],
+          ["not_blocked", "Clear", "bg-green-600"], 
         ] as const
       ).map(([key, text, activeBg]) => (
         <button
