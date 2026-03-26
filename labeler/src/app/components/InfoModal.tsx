@@ -34,7 +34,7 @@ export function InfoButton() {
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
               To understand the extent of the problem I've categorized street view
-              images of all 1,828 bus stops on the Manhattan bus lines to
+              images of all 1,781 bus stops on the Manhattan bus lines to
               produce an estimate of blocked stops at any given time.
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">

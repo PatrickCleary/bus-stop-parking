@@ -25581,29 +25581,6 @@
     "labeled_at": "2026-03-23T15:57:14.936Z"
   },
   {
-    "stop_id": 403323,
-    "stop_name": "WEST HOUSTON ST/LAGUARDIA PL",
-    "snapped_lat": 40.72687014215212,
-    "snapped_lon": -73.99978855072526,
-    "heading": 21.3,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "r56AAtWtho3s8sd288Lv7w",
-    "view_heading": 37.804069459789964,
-    "view_pitch": -1.232568891179298,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.726870708378875,
-    "view_lng": -73.9996894485064,
-    "image_date": "2024-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T06:17:43.056Z",
-    "route_ids": [
-      "M21"
-    ]
-  },
-  {
     "stop_id": 403326,
     "stop_name": "E 105 ST/FDR  DR",
     "snapped_lat": 40.788222,
@@ -37706,22 +37683,22 @@
     "snapped_lat": 40.807589083184574,
     "snapped_lon": -73.94504435380222,
     "heading": 197.2,
-    "label": "bad_image",
+    "route_ids": [
+      "M60-SBS"
+    ],
+    "label": "blocked",
     "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJQ0VyOW1OWlE.",
-    "view_heading": 197.2,
+    "pano_id": "xHPjfk74F8NKsHD5ZJ0WiA",
+    "view_heading": 204.98,
     "view_pitch": 0,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
-    "view_lat": 40.807584747325045,
-    "view_lng": -73.94504626693957,
-    "image_date": "2017-04",
+    "view_lat": 40.8074935886431,
+    "view_lng": -73.94475925293375,
+    "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T18:54:59.007Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
+    "labeled_at": "2026-03-26T04:10:08.731Z"
   },
   {
     "stop_id": 405419,
@@ -40240,282 +40217,6 @@
     "labeled_at": "2026-03-25T01:26:01.732Z"
   },
   {
-    "stop_id": 503357,
-    "stop_name": "HOYT AV SOUTH/31 ST",
-    "snapped_lat": 40.77032186486486,
-    "snapped_lon": -73.91749481081081,
-    "heading": 208.4,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "B02ZURsry5cDkPj_aqbGTg",
-    "view_heading": 138.0359153918634,
-    "view_pitch": -0.14062080598169757,
-    "view_zoom": 3.2471212986773335,
-    "view_fov": 18.957959652585,
-    "view_lat": 40.77029560797578,
-    "view_lng": -73.91758167555889,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:07.531Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 503848,
-    "stop_name": "LAGUARDIA AIRPORT/TERMINAL C",
-    "snapped_lat": 40.770298,
-    "snapped_lon": -73.864477,
-    "heading": 40.6,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "RA7PMSxT6rbVv0KJtJ8oXg",
-    "view_heading": 133.18298253879357,
-    "view_pitch": -9.062443251379676,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.7701649258166,
-    "view_lng": -73.86466741098862,
-    "image_date": "2024-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:11.102Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 503853,
-    "stop_name": "LGA/TERMINAL A - MARINE AIR TERMINAL",
-    "snapped_lat": 40.77287994117648,
-    "snapped_lon": -73.88607223529412,
-    "heading": 308.4,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "cBodwFxxSjgfe5l_5GKsUA",
-    "view_heading": 308.4,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.7728560264414,
-    "view_lng": -73.88607759691943,
-    "image_date": "2022-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:12.995Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 503855,
-    "stop_name": "DITMARS BLVD/81 ST",
-    "snapped_lat": 40.767307939037316,
-    "snapped_lon": -73.88790545814727,
-    "heading": 247.3,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "ujYkR7ddk2wYIltou4EMEw",
-    "view_heading": 311.2569698794475,
-    "view_pitch": -5.236219773421411,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.7674879943141,
-    "view_lng": -73.88793459190121,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:20.951Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 503870,
-    "stop_name": "ASTORIA BLVD/STEINWAY ST",
-    "snapped_lat": 40.769345841629054,
-    "snapped_lon": -73.90976468571486,
-    "heading": 6.8,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "HlrkWNa6YxpcpSxTcVWTYQ",
-    "view_heading": 67.74539590092286,
-    "view_pitch": 0.17901376474065955,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.7693336739921,
-    "view_lng": -73.90973282126266,
-    "image_date": "2023-05",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:25.759Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 503876,
-    "stop_name": "23 AV/87 ST",
-    "snapped_lat": 40.76734027077542,
-    "snapped_lon": -73.8823807716108,
-    "heading": 172.4,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "0vvyDCQO3WOlrFv2XuHzzw",
-    "view_heading": 131.66435059446977,
-    "view_pitch": 0.9469480952878655,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.76733205126895,
-    "view_lng": -73.8824215136513,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:28.605Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 504007,
-    "stop_name": "HOYT AV/31 ST",
-    "snapped_lat": 40.77101501961405,
-    "snapped_lon": -73.91760393894337,
-    "heading": 31.1,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "yF6_pN5xXUK4WuasBOBjqg",
-    "view_heading": 50.12577901687368,
-    "view_pitch": 1.7826731997798646,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.77097011137616,
-    "view_lng": -73.91759306803121,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:31.569Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 504023,
-    "stop_name": "94 ST/23 AV",
-    "snapped_lat": 40.768465571861746,
-    "snapped_lon": -73.8763048750758,
-    "heading": 77,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "3EbOuvOg_Dibj0hYaEOGTg",
-    "view_heading": 115.23381779251429,
-    "view_pitch": -2.260395960217352,
-    "view_zoom": 0.3646224717796125,
-    "view_fov": 139.80097619991972,
-    "view_lat": 40.76848808782777,
-    "view_lng": -73.87628030649918,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:35.135Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 504417,
-    "stop_name": "23 AV/82 ST",
-    "snapped_lat": 40.76641950320285,
-    "snapped_lon": -73.88718926975089,
-    "heading": 170.4,
-    "label": "blocked",
-    "notes": "",
-    "pano_id": "D2lGOe94DfFEbbzlhgJEyQ",
-    "view_heading": 156.12983539542273,
-    "view_pitch": -8.22163747955905,
-    "view_zoom": 1.506591022525806,
-    "view_fov": 63.34953277028345,
-    "view_lat": 40.766453231330914,
-    "view_lng": -73.88700555830233,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:46.351Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 504423,
-    "stop_name": "ASTORIA BLVD SOUTH/77 ST",
-    "snapped_lat": 40.76563745303774,
-    "snapped_lon": -73.89144088788755,
-    "heading": 185,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "b-4hYCdqbSzH9R9H4HvGdg",
-    "view_heading": 184.41141425586946,
-    "view_pitch": -5.268304745130692,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.76566685818164,
-    "view_lng": -73.89147053146783,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:48.814Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 504517,
-    "stop_name": "ASTORIA BLVD NORTH/77 ST",
-    "snapped_lat": 40.766740651376146,
-    "snapped_lon": -73.89252450458716,
-    "heading": 12.8,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "Dr3jcHvyFA2mw9aJaFfHcA",
-    "view_heading": 18.99427327074558,
-    "view_pitch": -3.2118889485235655,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.76672793788142,
-    "view_lng": -73.89256758202812,
-    "image_date": "2020-11",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:51.247Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 505254,
-    "stop_name": "ASTORIA BLVD SOUTH/STEINWAY ST",
-    "snapped_lat": 40.76883293003629,
-    "snapped_lon": -73.91080697569416,
-    "heading": 188.1,
-    "label": "not_blocked",
-    "notes": "",
-    "pano_id": "me8sWk6TXsWNNtB5jv0ASg",
-    "view_heading": 144.7149963609146,
-    "view_pitch": 0.17903823768554616,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.76884045589519,
-    "view_lng": -73.91084492972907,
-    "image_date": "2024-08",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:13:53.389Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
     "stop_id": 803002,
     "stop_name": "SOUTH ST/WHITEHALL ST",
     "snapped_lat": 40.701549,
@@ -40959,11 +40660,14 @@
     "snapped_lat": 40.80377208306242,
     "snapped_lon": -73.93392239217916,
     "heading": 17.6,
-    "label": "no_stop",
+    "route_ids": [
+      "M103"
+    ],
+    "label": "no_data",
     "notes": "",
     "pano_id": "ADLYj4wRMJLq9qA1mJ-ZgQ",
-    "view_heading": 330.6518149538425,
-    "view_pitch": -7.144281398749143,
+    "view_heading": 68.39731139062573,
+    "view_pitch": -7.346989326880546,
     "view_zoom": 1.0000000000000002,
     "view_fov": 89.99999999999999,
     "view_lat": 40.80379522786711,
@@ -40971,10 +40675,7 @@
     "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:16:15.684Z",
-    "route_ids": [
-      "M103"
-    ]
+    "labeled_at": "2026-03-26T04:09:17.321Z"
   },
   {
     "stop_id": 803154,
@@ -41074,22 +40775,22 @@
     "snapped_lat": 40.7964035369515,
     "snapped_lon": -73.92170011431871,
     "heading": 282.8,
-    "label": "no_stop",
+    "route_ids": [
+      "M60-SBS"
+    ],
+    "label": "no_data",
     "notes": "",
     "pano_id": "NVN3BVOExKaKdNtlDAM-jQ",
-    "view_heading": 340.8354631498599,
-    "view_pitch": 3.5644950842837346,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
+    "view_heading": 282.8,
+    "view_pitch": 0,
+    "view_zoom": 1,
+    "view_fov": 90,
     "view_lat": 40.79644829805622,
     "view_lng": -73.92171683004364,
     "image_date": "2024-08",
     "static_width": 640,
     "static_height": 400,
-    "labeled_at": "2026-03-21T19:16:34.828Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
+    "labeled_at": "2026-03-26T04:09:08.176Z"
   },
   {
     "stop_id": 803243,
@@ -41113,29 +40814,6 @@
     "static_width": 640,
     "static_height": 400,
     "labeled_at": "2026-03-23T22:25:00.780Z"
-  },
-  {
-    "stop_id": 804142,
-    "stop_name": "LAGUARDIA AIRPORT/TERMINAL C",
-    "snapped_lat": 40.77024894915663,
-    "snapped_lon": -73.86440123678076,
-    "heading": 26.4,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "wyT-8mVAD8dyJCoNhf_c4g",
-    "view_heading": 331.05070498890234,
-    "view_pitch": -4.42557815437803,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.77010369241565,
-    "view_lng": -73.86457902810588,
-    "image_date": "2024-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:16:39.726Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
   },
   {
     "stop_id": 840005,
@@ -41969,52 +41647,6 @@
     "static_width": 640,
     "static_height": 400,
     "labeled_at": "2026-03-23T22:12:54.728Z"
-  },
-  {
-    "stop_id": 904242,
-    "stop_name": "LAGUARDIA AIRPORT/TERMINAL B",
-    "snapped_lat": 40.7729389960563,
-    "snapped_lon": -73.87242539164819,
-    "heading": 9,
-    "label": "bad_image",
-    "notes": "",
-    "pano_id": "CAoSFkNJSE0wb2dLRUlDQWdJRDJrS0Q3U2c.",
-    "view_heading": 9,
-    "view_pitch": 0,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.77266281040849,
-    "view_lng": -73.87242117170224,
-    "image_date": "2022-05",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:19:31.690Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
-  },
-  {
-    "stop_id": 904246,
-    "stop_name": "LAGUARDIA RD/94 ST",
-    "snapped_lat": 40.77210881311476,
-    "snapped_lon": -73.87586254426229,
-    "heading": 169.9,
-    "label": "no_stop",
-    "notes": "",
-    "pano_id": "oevfC2_yn8swP2bRVA9kWg",
-    "view_heading": 148.88673175685256,
-    "view_pitch": -4.59648815203667,
-    "view_zoom": 1.0000000000000002,
-    "view_fov": 89.99999999999999,
-    "view_lat": 40.772116982930214,
-    "view_lng": -73.87585340169203,
-    "image_date": "2022-09",
-    "static_width": 640,
-    "static_height": 400,
-    "labeled_at": "2026-03-21T19:19:35.704Z",
-    "route_ids": [
-      "M60-SBS"
-    ]
   },
   {
     "stop_id": 904918,

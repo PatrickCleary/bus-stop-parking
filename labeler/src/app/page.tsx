@@ -272,7 +272,6 @@ function RouteDropdown({
 
 function StatusBar({
   data,
-  allStops,
   selectedRoute,
   filterMode,
   routeIds,
@@ -280,7 +279,7 @@ function StatusBar({
   onFilterModeChange,
 }: {
   data: LabelFeature[];
-  allStops: { stop_id: number; route_ids: string[] }[];
+
   selectedRoute: string | null;
   filterMode: "all" | "blocked" | "not_blocked" | "other";
   routeIds: string[];
@@ -291,9 +290,9 @@ function StatusBar({
     ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
     : data;
   const totalStopsForRoute = selectedRoute
-    ? allStops.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute))
+    ? data.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute))
         .length
-    : allStops.length;
+    : data.length;
 
   const blocked = routeStops.filter((d) => d.status === "blocked").length;
   const notBlocked = routeStops.filter(
@@ -367,10 +366,7 @@ export default function MapPage() {
   const [toast, setToast] = useState(false);
   const pendingStopRef = useRef<number | null>(null);
   const hoveredIdRef = useRef<number | null>(null);
-  const popupRef = useRef<maplibregl.Popup | null>(null);
-  const [allStops, setAllStops] = useState<
-    { stop_id: number; route_ids: string[] }[]
-  >([]);
+  const popupRef = useRef<maplibregl.Popup | null>(null); 
   const [filterMode, setFilterMode] = useState<
     "all" | "blocked" | "not_blocked" | "other"
   >("all");
@@ -379,14 +375,7 @@ export default function MapPage() {
   const [routesLoaded, setRoutesLoaded] = useState(false);
   const routesGeojsonRef = useRef<GeoJSON.FeatureCollection | null>(null);
 
-  // Load all stops (for total counts including unlabelled)
-  useEffect(() => {
-    fetch("/stops.json")
-      .then((r) => r.json())
-      .then((stops: { stop_id: number; route_ids: string[] }[]) =>
-        setAllStops(stops),
-      );
-  }, []);
+  
 
   // Check for query params on load
   useEffect(() => {
@@ -704,7 +693,7 @@ export default function MapPage() {
           {/* Status bar */}
           <StatusBar
             data={data}
-            allStops={allStops}
+
             selectedRoute={selectedRoute}
             filterMode={filterMode}
             routeIds={routeIds}
