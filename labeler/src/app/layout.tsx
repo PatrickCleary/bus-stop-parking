@@ -6,14 +6,17 @@ import { DM_Sans, Syne } from "next/font/google";
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 
+const siteUrl = "https://busstops.nyc";
+
 export const metadata: Metadata = {
   title: "Blocked Bus Stops in Manhattan",
+  description: "Mapping illegal parking at NYC bus stops",
   openGraph: {
-    images: ["/social-preview.png"],
+    images: [`${siteUrl}/social-preview.png`],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/social-preview.png"],
+    images: [`${siteUrl}/social-preview.png`],
   },
 };
 
