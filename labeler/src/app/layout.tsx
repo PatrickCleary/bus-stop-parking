@@ -7,7 +7,7 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne" });
 
 export const metadata: Metadata = {
-  title: "Bus Stop Labeler",
+  title: "Blocked Bus Stops in Manhattan",
   openGraph: {
     images: ["/social-preview.png"],
   },
