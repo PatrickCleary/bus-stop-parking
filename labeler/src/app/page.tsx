@@ -14,11 +14,8 @@ const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
 const STATUS_COLORS: Record<string, [number, number, number]> = {
   blocked: [220, 38, 38], // red
   not_blocked: [22, 163, 74], // green
-  construction: [234, 88, 12], // orange
-  uncertain: [147, 51, 234], // purple
-  no_stop: [156, 163, 175], // bright gray
-  bad_image: [202, 138, 4], // yellow
-  no_data: [6, 182, 212], // cyan
+  construction: [156, 163, 175],
+  no_data: [156, 163, 175],
 };
 
 const ROUTE_COLOR = "#3b82f6";
@@ -93,18 +90,12 @@ const LABEL_DISPLAY: Record<string, string> = {
   blocked: "blocked",
   not_blocked: "clear",
   construction: "construction",
-  uncertain: "uncertain",
-  no_stop: "no stop",
-  bad_image: "bad image",
 };
 
 const LABEL_COLORS: Record<string, string> = {
   blocked: "bg-red-600",
   not_blocked: "bg-green-600",
   construction: "bg-orange-600",
-  uncertain: "bg-purple-600",
-  no_stop: "bg-gray-600",
-  bad_image: "bg-yellow-600",
 };
 
 function SidebarGallery({
@@ -116,7 +107,7 @@ function SidebarGallery({
 }: {
   data: LabelFeature[];
   selectedRoute: string | null;
-  filterMode: "all" | "blocked" | "not_blocked" | "other";
+  filterMode: "all" | "blocked" | "not_blocked";
   onSelectStop: (d: LabelFeature) => void;
   selectedStopId: number | null;
 }) {
@@ -281,17 +272,16 @@ function StatusBar({
   data: LabelFeature[];
 
   selectedRoute: string | null;
-  filterMode: "all" | "blocked" | "not_blocked" | "other";
+  filterMode: "all" | "blocked" | "not_blocked";
   routeIds: string[];
   onRouteChange: (id: string | null) => void;
-  onFilterModeChange: (mode: "all" | "blocked" | "not_blocked" | "other") => void;
+  onFilterModeChange: (mode: "all" | "blocked" | "not_blocked") => void;
 }) {
   const routeStops = selectedRoute
     ? data.filter((d) => stopMatchesRoute(d.route_ids, selectedRoute))
     : data;
   const totalStopsForRoute = selectedRoute
-    ? data.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute))
-        .length
+    ? data.filter((s) => stopMatchesRoute(s.route_ids, selectedRoute)).length
     : data.length;
 
   const blocked = routeStops.filter((d) => d.status === "blocked").length;
@@ -306,7 +296,7 @@ function StatusBar({
   const region = selectedRoute ?? "All Manhattan";
 
   return (
-    <div className="absolute bottom-4 left-3 z-10 bg-[#0a0a0a]/90 backdrop-blur rounded-lg px-4 py-3 min-w-[220px]">
+    <div className="absolute bottom-0 left-0 md:bottom-4 md:left-3 z-10 bg-[#0a0a0a]/90 backdrop-blur  rounded-t-lg md:rounded-lg px-4 py-3 min-w-[220px] w-full md:w-fit">
       {/* Route selector */}
       <RouteDropdown
         selectedRoute={selectedRoute}
@@ -335,8 +325,7 @@ function StatusBar({
         {(
           [
             ["all", "All", "bg-gray-600"],
-            ["blocked", "Blocked", "bg-red-600"],
-            ["other", "Other", "bg-purple-600"],
+            ["blocked", "Blocked", "bg-red-600"], 
           ] as const
         ).map(([mode, label, activeBg]) => (
           <button
@@ -366,16 +355,12 @@ export default function MapPage() {
   const [toast, setToast] = useState(false);
   const pendingStopRef = useRef<number | null>(null);
   const hoveredIdRef = useRef<number | null>(null);
-  const popupRef = useRef<maplibregl.Popup | null>(null); 
-  const [filterMode, setFilterMode] = useState<
-    "all" | "blocked" | "not_blocked" | "other"
-  >("all");
+  const popupRef = useRef<maplibregl.Popup | null>(null);
+  const [filterMode, setFilterMode] = useState<"all" | "blocked">("all");
   const [routeIds, setRouteIds] = useState<string[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<string | null>(null);
   const [routesLoaded, setRoutesLoaded] = useState(false);
   const routesGeojsonRef = useRef<GeoJSON.FeatureCollection | null>(null);
-
-  
 
   // Check for query params on load
   useEffect(() => {
@@ -544,10 +529,6 @@ export default function MapPage() {
     }
     if (filterMode === "blocked") {
       filtered = filtered.filter((d) => d.status === "blocked");
-    } else if (filterMode === "not_blocked") {
-      filtered = filtered.filter((d) => d.status === "not_blocked");
-    } else if (filterMode === "other") {
-      filtered = filtered.filter((d) => d.status !== "blocked" && d.status !== "not_blocked");
     }
     const layer = new ScatterplotLayer<LabelFeature>({
       id: "labels",
@@ -639,13 +620,17 @@ export default function MapPage() {
     popupRef.current = popup;
 
     const el = popup.getElement();
-    el.querySelector<HTMLButtonElement>("[data-action='copy-link']")?.addEventListener("click", () => {
+    el.querySelector<HTMLButtonElement>(
+      "[data-action='copy-link']",
+    )?.addEventListener("click", () => {
       const url = `${window.location.origin}/?stop=${d.stop_id}`;
       navigator.clipboard.writeText(url);
       setToast(true);
       setTimeout(() => setToast(false), 2000);
     });
-    el.querySelector<HTMLButtonElement>("[data-action='close']")?.addEventListener("click", () => {
+    el.querySelector<HTMLButtonElement>(
+      "[data-action='close']",
+    )?.addEventListener("click", () => {
       popup.remove();
     });
 
@@ -693,7 +678,6 @@ export default function MapPage() {
           {/* Status bar */}
           <StatusBar
             data={data}
-
             selectedRoute={selectedRoute}
             filterMode={filterMode}
             routeIds={routeIds}

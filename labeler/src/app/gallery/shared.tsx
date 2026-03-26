@@ -4,12 +4,26 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 
-const SHORT_MONTHS = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+const SHORT_MONTHS = [
+  "Jan.",
+  "Feb.",
+  "Mar.",
+  "Apr.",
+  "May",
+  "Jun.",
+  "Jul.",
+  "Aug.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dec.",
+];
 
 export function formatImageDate(d: string): string {
   const parts = d.split("-");
   const year = parts[0];
-  const month = parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
+  const month =
+    parts.length > 1 ? SHORT_MONTHS[parseInt(parts[1], 10) - 1] : null;
   return month ? `${month} ${year}` : year;
 }
 
@@ -17,7 +31,7 @@ export interface Label {
   stop_id: number;
   stop_name: string;
   route_ids: string[];
-  label: "blocked" | "not_blocked" | "bad_image" | "construction" | "uncertain" | "no_stop" | "no_data";
+  label: "blocked" | "not_blocked" | "construction" | "no_data";
   notes: string;
   labeled_at: string;
   snapped_lat: number;
@@ -40,9 +54,6 @@ export const LABEL_CONFIG = {
   blocked: { text: "Blocked", bg: "bg-red-600", order: 0 },
   not_blocked: { text: "Clear", bg: "bg-green-600", order: 1 },
   construction: { text: "Construction", bg: "bg-orange-600", order: 2 },
-  uncertain: { text: "Uncertain", bg: "bg-purple-600", order: 3 },
-  no_stop: { text: "No Stop", bg: "bg-gray-600", order: 4 },
-  bad_image: { text: "Bad Image", bg: "bg-yellow-600", order: 5 },
   no_data: { text: "No Data", bg: "bg-cyan-600", order: 6 },
 } as const;
 
@@ -53,14 +64,21 @@ export function toStaticUrl(l: Label): string {
   return `${SUPABASE_STORAGE}/${l.stop_id}.jpg`;
 }
 
-const VALID_FILTERS = new Set(["all", "blocked", "not_blocked", "construction", "uncertain", "no_stop", "bad_image", "no_data"]);
+const VALID_FILTERS = new Set([
+  "all",
+  "blocked",
+  "not_blocked",
+  "construction",
+  "no_data",
+]);
 
 export function useLabels() {
   const [labels, setLabels] = useState<Label[]>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
   const statusParam = searchParams.get("status");
-  const filter = statusParam && VALID_FILTERS.has(statusParam) ? statusParam : "blocked";
+  const filter =
+    statusParam && VALID_FILTERS.has(statusParam) ? statusParam : "blocked";
 
   const setFilter = (f: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -74,7 +92,7 @@ export function useLabels() {
       .then((data: Label[]) => {
         data.sort(
           (a, b) =>
-            new Date(b.labeled_at).getTime() - new Date(a.labeled_at).getTime()
+            new Date(b.labeled_at).getTime() - new Date(a.labeled_at).getTime(),
         );
         setLabels(data);
       });
@@ -88,15 +106,11 @@ export function useLabels() {
     blocked: labels.filter((l) => l.label === "blocked").length,
     not_blocked: labels.filter((l) => l.label === "not_blocked").length,
     construction: labels.filter((l) => l.label === "construction").length,
-    uncertain: labels.filter((l) => l.label === "uncertain").length,
-    no_stop: labels.filter((l) => l.label === "no_stop").length,
-    bad_image: labels.filter((l) => l.label === "bad_image").length,
     no_data: labels.filter((l) => l.label === "no_data").length,
   };
 
   return { labels, filtered, filter, setFilter, counts };
 }
-
 
 export function GalleryFilters({
   filter,
@@ -114,10 +128,7 @@ export function GalleryFilters({
           ["all", "All", "bg-gray-600"],
           ["blocked", "Blocked", "bg-red-600"],
           ["not_blocked", "Clear", "bg-green-600"],
-          ["construction", "Construction", "bg-orange-600"],
-          ["uncertain", "Uncertain", "bg-purple-600"],
-          ["no_stop", "No Stop", "bg-gray-600"],
-          ["bad_image", "Bad Image", "bg-yellow-600"],
+          ["construction", "Construction", "bg-orange-600"], 
           ["no_data", "No Data", "bg-cyan-600"],
         ] as const
       ).map(([key, text, activeBg]) => (
@@ -148,7 +159,12 @@ export function GalleryCard({
 
   return (
     <div className="bg-[#0a0a0a] border border-gray-800 rounded overflow-hidden">
-      <a href={streetViewUrl} target="_blank" rel="noopener noreferrer" className="block aspect-video relative">
+      <a
+        href={streetViewUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block aspect-video relative"
+      >
         <img
           src={toStaticUrl(l)}
           alt={l.stop_name}

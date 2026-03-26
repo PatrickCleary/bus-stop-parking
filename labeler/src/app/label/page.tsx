@@ -11,14 +11,7 @@ interface Stop {
   route_ids: string[];
   streetview_url: string;
 }
-type StatusLabels =
-  | "blocked"
-  | "not_blocked"
-  | "bad_image"
-  | "construction"
-  | "uncertain"
-  | "no_stop"
-  | "no_data";
+type StatusLabels = "blocked" | "not_blocked" | "construction" | "no_data";
 
 interface PovState {
   pano: string;
@@ -388,24 +381,7 @@ export default function Home() {
           >
             Construction
           </button>
-          <button
-            onClick={() => handleLabel("uncertain")}
-            className="flex-1 bg-purple-600 hover:bg-purple-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
-          >
-            Uncertain
-          </button>
-          <button
-            onClick={() => handleLabel("no_stop")}
-            className="flex-1 bg-gray-600 hover:bg-gray-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
-          >
-            No Stop
-          </button>
-          <button
-            onClick={() => handleLabel("bad_image")}
-            className="flex-1 bg-yellow-600 hover:bg-yellow-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
-          >
-            Bad Image
-          </button>
+
           <button
             onClick={() => handleLabel("no_data")}
             className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white font-medium py-2 px-3 rounded text-sm transition-colors cursor-pointer"
