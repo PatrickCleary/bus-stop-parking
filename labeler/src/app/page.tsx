@@ -432,7 +432,7 @@ export default function MapPage() {
 
     const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: "https://tiles.stadiamaps.com/styles/alidade_smooth_dark.json",
+      style: "/alidade_no_labels_mega_dark.json",
       center: [-73.95, 40.78],
       zoom: 12,
     });

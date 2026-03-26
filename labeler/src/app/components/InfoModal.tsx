@@ -25,45 +25,38 @@ export function InfoButton() {
             className="relative z-10 max-w-xl px-8 py-10 text-white max-h-[100svh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-lg md:text-2xl font-semibold mb-4">
+            <h2 className="text-lg md:text-2xl font-semibold mb-4 font-syne text-nowrap">
               New York City buses can't stay on schedule.
             </h2>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
-              Thousands of bus stops across the city are regularly blocked by
-              illegally parked cars, construction, and other obstacles. This
-              makes it difficult for buses to pull over and pick up passengers,
-              leading to delays and missed stops.
+              Millions of bus riders are delayed daily by parked cars, delivery
+              trucks, and other obstacles in bus stops.
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
-              This project is an effort to understand the extent of New York's
-              bus stop problem. Using Google Street View imagery, we can take a
-              sample of every bus stop to see whether it's blocked or clear at a
-              moment in time. This gives us an estimate of how many stops are
-              blocked at any given time.
+              To understand the extent of the problem I've categorized street view
+              images of all 1,828 bus stops on the Manhattan bus lines to
+              produce an estimate of blocked stops at any given time.
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
-              The answer?
+              So how many was it?
             </p>
-            <p className="font-bold text-sm md:text-base">19%</p>
-            <br/>
-
+            <p className="font-bold text-xl md:text-2xl">19%</p>
+            <br />
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
-              This app displays the result of labelling the 1,800 bus stops
-              along M bus routes in Manhattan.
+              That means almost <b className="font-extrabold">one in five</b>{" "}
+              stops are blocked at any given moment.
             </p>
             <p className="text-sm md:text-base text-gray-300 leading-relaxed mb-4">
-              To learn more about the methodology and findings,{" "}
               <a
-                href="https://patrickcleary.nyc/posts/bus-stop-blockages/"
+                href="https://patrickcleary1.substack.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-600 transition-colors"
+                className="text-red-400 hover:text-blue-600 transition-colors"
               >
-                read the blog post
-              </a>
-              .
+                Read the blog post
+              </a>{" "}
+              or continue to the map to see all of the street view images.
             </p>
-
             <button
               onClick={() => setOpen(false)}
               className="text-sm  hover:bg-gray-300 border border-gray-600 py-4  transition-colors cursor-pointer w-full hover:text-black "
