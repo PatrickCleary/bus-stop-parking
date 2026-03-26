@@ -2,7 +2,7 @@
 
 import { InfoButton } from "./InfoModal";
 
-export function NavBar({ active }: { active: "map" | "gallery" }) {
+export function NavBar({ active }: { active: "map" | "gallery" | "methodology" }) {
   return (
     <div className="bg-[#0a0a0a] border-b border-gray-800 px-4 py-2 flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -27,6 +27,16 @@ export function NavBar({ active }: { active: "map" | "gallery" }) {
             }`}
           >
             Gallery
+          </a>
+          <a
+            href="/methodology"
+            className={`px-2 py-1 text-sm transition-colors ${
+              active === "methodology"
+                ? "text-white font-medium"
+                : "text-gray-500 hover:text-gray-300"
+            }`}
+          >
+            Methodology
           </a>
         </nav>
       </div>
